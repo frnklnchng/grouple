@@ -3,6 +3,7 @@
 ## Background and Overview
 Grouple is a web application that allows for like-minded Reddit users to chat with other Redditors about their subject -subreddit- of choice.
 
+
 ## Functionality and MVP
 
 - [ ] Reddit users are able to sign in through Reddit's OAuth and access the app directly
@@ -22,10 +23,15 @@ Grouple is a web application that allows for like-minded Reddit users to chat wi
 
 - MongoDB
 - Express 
-- React
-- Node.js
-- Socket.IO
-- Bootstrap
+- React - To create front end web components
+- Node.js - 
+- Socket.IO - connceting multiple users to chatroomns
+- Bootstrap - CSS standard to style application
+
+### Technical Challenges include: 
+* Implementing a simple and clean OAuth system for users to login through their Reddit accounts
+* Connecting many users to live chat for respective subreddit topics
+* Polishing front end User Interface for great user experience 
 
 ## Weekend Goals
 
@@ -42,14 +48,17 @@ Grouple is a web application that allows for like-minded Reddit users to chat wi
 Donguk Kim, Franklin Chang, Kevin Choy, Jason Wong
 
 Donguk Kim's primary responsibilities will be:
+- Backend implementations
 
 Franklin's primary responsibilities will be:
+- Reddit API integration
 
 Kevin's primary responsibilities will be:
 - researching OAuth
 - implementing OAuth into the application 
 
 Jason's primary responsibilities will be:
+- Backend implementations
 
 
 ### Weekend
@@ -61,18 +70,30 @@ Jason's primary responsibilities will be:
 - OAuth
 
 ### Day 1 (Mon)
-
+ - Complete websockets setup (if not earlier)
+ - Complete working front end for users to login through Reddit account (OAuth)
+ - Display basic Reddit user details 
 ### Day 2 (Tue)
-
+ - Style an impressive spash page
+ - Create a working multi-user live chatroom
 ### Day 3 (Wed)
-
+ - Create multiple chatrooms for distinct subreddit topics (Avoid duplicate subreddits)
+ - Create system to link active subreddit forum to respective chatroom
+ - Style chatrooms appropriately
 ### Day 4 (Thur)
-
+ - Create user profile view to display Reddit statistics
+ - Create display component for active users for current chatroom
+ - Style display appropriately 
 ### Day 5 (Fri)
-
+ - Implement direct message system for private messages between users
+ - Research and implement lazy load for chatroom messages
 ### Day 6 (Sat)
-
+ 
 ### Day 7 (Sun)
+
+## Plan for getting users and reviews
+* Team members will share with friends and family
+* Suggest application to appropriate outlets
 
 
 
