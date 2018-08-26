@@ -1,25 +1,23 @@
 # Grouple
 
 ## Background and Overview
-Grouple is a web application that allows for like-minded Reddit users to chat with other Redditors about their subject -subreddit- of choice.
+Grouple is a web application that allows like-minded Reddit users to chat with other Redditors within a subreddit of choice.
 
-## Functionality and MVP
-
+## Functionality and MVPs
+- [ ] Mobile-first styling allows both mobile and computer users to use the application
 - [ ] Reddit users are able to sign in through Reddit's OAuth and access the app directly
-- [ ] Information such as a user's subscribed subreddits and accumuluated karma in a specific subreddit will be requested directly from the Reddit API
+- [ ] Information such as a user's subscribed subreddits and accumuluated karma in a specific subreddit received from the Reddit API
+- [ ] User profiles and statistics will be recieved from the Reddit API
 - [ ] Direct messages in a chatroom will have a single-depth response thread
 - [ ] Guests will be able to view a subreddit's chatroom, but will not be able to participate until authenticated
-- [ ] User profiles and statistics will be generated from user data requests to the API
 - [ ] User location and timezone will optionally be available for other users to view
 
 ### Bonus
-
-- [ ] Lazy loading chatroom messages for a smooth user experience and to reduce unnecessary requests
+- [ ] Lazy loading chatroom messages for a smoother user experience and to reduce unnecessary requests
 - [ ] Karma related rewards such as avatar and profile borders
 - [ ] Proximity chat to contact other like-minded Redditors around you
 
 ## Technologies and Technical Challenges
-
 - MongoDB
 - Express 
 - React
@@ -28,26 +26,25 @@ Grouple is a web application that allows for like-minded Reddit users to chat wi
 - Bootstrap
 
 ## Weekend Goals
-
-- Mobile-first styling
-- Reddit OAuth
+- Reddit API (OAuth, GET requests)
 - Backend setup
 - Websockets
 
 ## Things Accomplished Over the Weekend
 - [ ] Create a backend with working login and signup
-- [ ] Get the oauth working for reddit
+- [ ] Get the OAuth working through the Reddit API
+- [ ] Get user data through the Reddit API
 
 ## Group Memebers and Work Breakdown
 Donguk Kim, Franklin Chang, Kevin Choy, Jason Wong
 
-Donguk Kim's primary responsibilities will be:
+Kim's primary responsibilities will be:
 
 Franklin's primary responsibilities will be:
 
 Kevin's primary responsibilities will be:
-- researching OAuth
-- implementing OAuth into the application 
+- Researching OAuth
+- Implementing OAuth into the application 
 
 Jason's primary responsibilities will be:
 
@@ -56,9 +53,8 @@ Jason's primary responsibilities will be:
 - Study MERN stack, Reddit API, Websockets
 - Complete backend setup
 - Selecting bootstrap template
-- Complete Reddit API request functionality
+- Complete Reddit API request functionality (OAuth, GET)
 - Backend: models, database, controllers, server, websockets, routes
-- OAuth
 
 ### Day 1 (Mon)
 

@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
-require('./config/passport')(passport);
 const bodyParser = require('body-parser');
+const passportSetup =  require('./config/passport');
+
 const users = require('./routes/api/users');
 const database = require('./config/keys').mongoURI;
 const port = process.env.PORT || 3000;
+passportSetup(passport);
 
 mongoose
   .connect(database, { useNewUrlParser: true })
@@ -20,8 +22,4 @@ app.use('/api/users', users);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-});
-
-app.get('/', (request, response) => {
-  response.send('Hello World!');
 });
