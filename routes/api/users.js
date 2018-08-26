@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 const keys = require('../../config/keys');
 const User = require('../../models/User');
 const jsonwebtoken = require('jsonwebtoken');
@@ -15,6 +16,10 @@ function userParams(formUser) {
 router.get('/', (request, response) => {
   response.json({ msg: 'This is the users route' });
 });
+
+router.get('/current', passport.authenticate('jsonwebtoken', { session: false }), (request, response) => {
+  response.json({ msg: 'Success' });
+})
 
 router.post('/signup', (request, response) => {
   User.findOne({ email: request.body.email }).then(user => {
