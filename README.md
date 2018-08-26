@@ -36,9 +36,21 @@ Grouple is a web application that allows for like-minded Reddit users to chat wi
 
 ## Things Accomplished Over the Weekend
 - [ ] Create a backend with working login and signup
+- [ ] Get the oauth working for reddit
 
 ## Group Mmebers and Work Breakdown
 Donguk Kim, Franklin Chang, Kevin Choy, Jason Wong
+
+Donguk Kim's primary responsibilities will be:
+
+Franklin's primary responsibilities will be:
+
+Kevin's primary responsibilities will be:
+- researching OAuth
+- implementing OAuth into the application 
+
+Jason's primary responsibilities will be:
+
 
 ### Weekend
 - Study MERN stack, Reddit API, Websockets
