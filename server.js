@@ -23,6 +23,5 @@ app.listen(port, () => {
 });
 
 app.get('/', (request, response) => {
-  console.log(passport.initialize());
   response.send('Hello World!');
 });

@@ -20,10 +20,9 @@ router.get('/', (request, response) => {
 router.get('/current', passport.authenticate('jwt', { session: false }), (request, response) => {
   response.json({ 
     id: request.user.id,
-    name: request.user.name,
     email: request.user.email 
   });
-})
+});
 
 router.post('/signup', (request, response) => {
   User.findOne({ email: request.body.email }).then(user => {
@@ -35,8 +34,8 @@ router.post('/signup', (request, response) => {
       const newUser = new User(userParams(request));
       bcrypt.genSalt(10, (_, salt) => {
         bcrypt.hash(newUser.password, salt, (error, hash) => {
-
           if (error) throw error;
+
           newUser.password = hash;
           newUser.save()
             .then(dbUser => response.json(dbUser))
@@ -71,7 +70,8 @@ router.post('/login', (request, response) => {
             });
           });
       } else {
-        return response.status(400).json({ password: 'Incorrect password' });
+        const errorMessage = { password: 'Incorrect password' };
+        return response.status(400).json(errorMessage);
       }
     });
   });
