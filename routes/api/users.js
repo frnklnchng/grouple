@@ -1,11 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const jsonwebtoken = require('jsonwebtoken');
+
 const keys = require('../../config/keys');
 const User = require('../../models/User');
-const jsonwebtoken = require('jsonwebtoken');
 const validateLoginInput = require('../../validation/login');
 const validateRegisterInput = require('../../validation/signup');
+
 const router = express.Router();
 
 function userParams(formUser) {
@@ -15,10 +17,12 @@ function userParams(formUser) {
   };
 }
 
+// GET /api/users/
 router.get('/', (request, response) => {
   response.json({ msg: 'This is the users route' });
 });
 
+// GET /api/users/current
 router.get('/current', passport.authenticate('jwt', { session: false }), (request, response) => {
   response.json({ 
     id: request.user.id,
@@ -26,11 +30,10 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (reques
   });
 });
 
+// POST /api/users/signup
 router.post('/signup', (request, response) => {
   const { errors, isValid } = validateRegisterInput(request.body);
-  if (!isValid) {
-    return response.status(400).json(errors);
-  }
+  if (!isValid) return response.status(400).json(errors);
 
   User.findOne({ email: request.body.email }).then(user => {
     if (user) {
@@ -42,7 +45,6 @@ router.post('/signup', (request, response) => {
       bcrypt.genSalt(10, (_, salt) => {
         bcrypt.hash(newUser.password, salt, (error, hash) => {
           if (error) throw error;
-
           newUser.password = hash;
           newUser.save()
             .then(dbUser => response.json(dbUser))
@@ -53,12 +55,11 @@ router.post('/signup', (request, response) => {
   });
 });
 
+// POST /api/users/login
 router.post('/login', (request, response) => {
   const { errors, isValid } = validateLoginInput(request.body);
-  if (!isValid) {
-    return response.status(400).json(errors);
-  }
-
+  if (!isValid) return response.status(400).json(errors);
+  
   const email = request.body.email;
   const password = request.body.password;
 
