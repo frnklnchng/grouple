@@ -14,7 +14,7 @@ router.get('/', (request, response) => {
   response.json({ msg: 'This is the users route' });
 });
 
-router.post('/register', (request, response) => {
+router.post('/signup', (request, response) => {
   User
     .findOne({ email: request.body.email })
     .then(user => {
