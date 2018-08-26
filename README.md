@@ -38,7 +38,7 @@ Grouple is a web application that allows for like-minded Reddit users to chat wi
 - [ ] Create a backend with working login and signup
 - [ ] Get the oauth working for reddit
 
-## Group Mmebers and Work Breakdown
+## Group Memebers and Work Breakdown
 Donguk Kim, Franklin Chang, Kevin Choy, Jason Wong
 
 Donguk Kim's primary responsibilities will be:
