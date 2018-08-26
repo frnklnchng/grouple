@@ -18,7 +18,11 @@ router.get('/', (request, response) => {
 });
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (request, response) => {
-  response.json({ msg: 'Success' });
+  response.json({ 
+    id: request.user.id,
+    name: request.user.name,
+    email: request.user.email 
+  });
 })
 
 router.post('/signup', (request, response) => {
