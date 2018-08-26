@@ -17,7 +17,7 @@ router.get('/', (request, response) => {
   response.json({ msg: 'This is the users route' });
 });
 
-router.get('/current', passport.authenticate('jsonwebtoken', { session: false }), (request, response) => {
+router.get('/current', passport.authenticate('jwt', { session: false }), (request, response) => {
   response.json({ msg: 'Success' });
 })
 
