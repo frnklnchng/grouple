@@ -21,12 +21,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/messages', messages);
-app.use(express.static('public'));
+app.use(express.static('./'));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
 app.get('/', (request, response) => {
-  response.json({ Splash: 'Welcome to Grouple' });
+  // response.json({ Splash: 'Welcome to Grouple' });
+  response.sendFile(__dirname + '/index.html');
 });
