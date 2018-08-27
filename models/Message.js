@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'users'
-  },
+  // userId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'users'
+  // },
   // subredditId: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'subreddits'
@@ -21,5 +21,4 @@ const MessageSchema = new Schema({
 });
 
 const Message = mongoose.model('messages', MessageSchema);
-
 module.exports = Message;
