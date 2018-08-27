@@ -6,7 +6,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const User = require('../../models/User');
 const validateLoginInput = require('../../validation/login');
-const validateRegisterInput = require('../../validation/signup');
+const validateSignupInput = require('../../validation/signup');
 
 const router = express.Router();
 
@@ -32,7 +32,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (reques
 
 // POST /api/users/signup
 router.post('/signup', (request, response) => {
-  const { errors, isValid } = validateRegisterInput(request.body);
+  const { errors, isValid } = validateSignupInput(request.body);
   if (!isValid) return response.status(400).json(errors);
 
   User.findOne({ email: request.body.email }).then(user => {
