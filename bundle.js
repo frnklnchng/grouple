@@ -112,8 +112,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
-  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
-  // ReactDOM.render(<div>Hello world!</div>, root);
+  // ReactDOM.render(<Root store={store} />, root);
+  _reactDom2.default.render(_react2.default.createElement(
+    'div',
+    null,
+    'Hello world!'
+  ), root);
 });
 
 /***/ }),
