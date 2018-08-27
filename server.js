@@ -1,4 +1,5 @@
 const express = require('express');
+const socket = require('socket.io');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
@@ -23,10 +24,16 @@ app.use('/api/users', users);
 app.use('/api/messages', messages);
 app.use(express.static('public'));
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
 app.get('/', (request, response) => {
-  response.json({ Splash: 'Welcome to Grouple' });
+  response.sendFile(__dirname + '/index.html');
+});
+
+const io = socket(server);
+io.sockets.on('connection', (socketInstance) => {
+  socketInstance.emit('connection');
+  socketInstance.on
 });
