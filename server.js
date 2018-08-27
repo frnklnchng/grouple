@@ -23,7 +23,12 @@ mongoose
 
   io.on('connection', function(socket){
     console.log('a user connected');
+    socket.broadcast.emit('hi');
+    socket.on('chat message', function(msg){
+      io.emit('chat message', msg);
+    });
   });
+
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
