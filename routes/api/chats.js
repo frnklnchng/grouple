@@ -1,13 +1,14 @@
-const express = require('express');
-const jsonwebtoken = require('jsonwebtoken');
+console.log('wadufek');
+// const socket = io.connect(); 
 
-const keys = require('../../config/keys');
-
-const router = express.Router();
-
-router.get('/chat', (request, response) => {
-  response.json({
-    msg: 'This is the chat route'
-  });
-});
-module.exports = router;
+// $(function () {
+//   var socket = io();
+//   $('form').submit(function () {
+//     socket.emit('chat message', $('#m').val());
+//     $('#m').val('');
+//     return false;
+//   });
+//   socket.on('chat message', function (msg) {
+//     $('#messages').append($('<li>').text(msg));
+//   });
+// });
