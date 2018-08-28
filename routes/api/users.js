@@ -90,9 +90,5 @@ router.post('/login', (request, response) => {
   });
 });
 
-//chat sanity testing
-router.get('/chat', (request, response) => {
-  response.sendFile(__dirname + '/chat.html');
-});
 
 module.exports = router;

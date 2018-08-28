@@ -1,14 +1,10 @@
-console.log('wadufek');
-// const socket = io.connect(); 
+const express = require('express');
+const passport = require('passport');
 
-// $(function () {
-//   var socket = io();
-//   $('form').submit(function () {
-//     socket.emit('chat message', $('#m').val());
-//     $('#m').val('');
-//     return false;
-//   });
-//   socket.on('chat message', function (msg) {
-//     $('#messages').append($('<li>').text(msg));
-//   });
-// });
+const router = express.Router();
+
+router.get('/', (request, response) => {
+  response.sendFile(__dirname + '/chat.html');
+});
+
+module.exports = router;

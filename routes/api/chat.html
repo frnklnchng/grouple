@@ -52,31 +52,33 @@
   </style>
 
   <script src="../../socket.io/socket.io.js"></script>
-  <script>
-    const socket = io.connect();
-  </script>
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script>
-    $(function () {
-      var socket = io();
-      $('form').submit(function () {
-        socket.emit('chat message', $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
-    });
-  </script>
 </head>
 
 <body>
   <ul id="messages"></ul>
-  <form action="">
+  <form id='chat-form' action="">
     <input id="m" autocomplete="off" />
     <button>Send</button>
   </form>
 </body>
+<script>
+//submit listener prevents button default, takes input's value and emits to other users as 'chat message'
+//socket.on listens for 'chat message' and runs function if received
+  const socket = io.connect();
+  document.getElementById('chat-form')
+    .addEventListener('submit', function(event){
+      event.preventDefault();
+      socket.emit('chat message', document.getElementById('m').value);
+      document.getElementById('m').value = '';
+      return false;
+    });
+    socket.on('chat message', function(msg){
+      let chatElem = document.createElement("li");
+      chatElem.append(msg);
+      document.getElementById('messages')
+        .append(chatElem);
+    });
+
+  </script>
 
 </html>
