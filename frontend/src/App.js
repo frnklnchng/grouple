@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Splash from './splash/splash.js';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-      
-        <h1>welcome to grouple</h1>
-        <Splash />
-      </div>
+import Root from './components/root';
 
-    );
-  }
-}
+const App = ({ store }) => (
+  <Provider store={store}>
+    <HashRouter>
+      <Root />
+    </HashRouter>
+  </Provider>
+);
 
 export default App;
