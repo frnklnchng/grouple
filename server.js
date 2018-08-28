@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const passportSetup =  require('./config/passport');
 
 const users = require('./routes/api/users');
+const messages = require('./routes/api/messages');
 const database = require('./config/keys').mongoURI;
 const port = process.env.PORT || 3000;
 passportSetup(passport);
