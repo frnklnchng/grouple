@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jsonwebtoken = require('jsonwebtoken');
 
-const keys = require('../../config/keys');
 const User = require('../../models/User');
+const keys = require('../../config/keys');
 const validateLoginInput = require('../../validation/login');
 const validateSignupInput = require('../../validation/signup');
 

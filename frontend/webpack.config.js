@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = {
   context: __dirname,
-  entry: './frontend/Grouple.jsx',
+  entry: './grouple.jsx',
   output: {
-    path: path.resolve(__dirname),
+    path: path.resolve(__dirname, 'bundle'),
     filename: 'bundle.js'
   },
   resolve: {
@@ -20,7 +20,7 @@ module.exports = {
           query: {
             presets: ['env', 'react']
           }
-        },
+        }
       }
     ]
   },
