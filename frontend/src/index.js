@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = '/login';
     }
   }
+
+
   const root = document.getElementById('root');
   ReactDOM.render(<App store={store} />, root);
   registerServiceWorker();
