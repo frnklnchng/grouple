@@ -10,6 +10,8 @@ const validateSignupInput = require('../../validation/signup');
 
 const router = express.Router();
 
+const axios = require('axios');
+
 function userParams(formUser) {
   return {
     email: formUser.body.email,
@@ -88,6 +90,41 @@ router.post('/login', (request, response) => {
       }
     });
   });
+});
+
+
+//create temporary axios route udner /api/users/axios to test axios request
+//console.log messages show up in terminal
+router.get('/axios', (request, response) => {
+  axios.get("http://localhost:3000/api/users")
+    .then(function (response) {
+      // handle success
+      console.log('triumph')
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log('waduhek')
+      console.log(error);
+    })
+});
+
+//test axios post request with newly created user email@email.com, password
+router.get('/axios/login', (request, response) => {
+  axios.post("http://localhost:3000/api/users/login", {
+    email: 'email@email.com',
+    password: 'password'
+  })
+    .then(function (response) {
+      // handle success
+      console.log('check response data')
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log('waduhek')
+      console.log(error);
+    })
 });
 
 module.exports = router;
