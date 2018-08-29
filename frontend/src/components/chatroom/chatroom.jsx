@@ -10,7 +10,8 @@ class Chatroom extends React.Component {
       message: ""
     };
     this.handleSend = this.handleSend.bind(this);
-
+    this.chatOnEmit = this.chatOnEmit.bind(this);
+    this.chatOnEmit();
   }
 
   update(field) {
@@ -26,8 +27,10 @@ class Chatroom extends React.Component {
     return false;
   }
 
-  chatUpdate(){
+  chatOnEmit(){
+    console.log('ran it!');
     this.socket.on('chat message', function (msg) {
+      console.log('ah, new message!!');
       let chatElem = document.createElement("li");
       chatElem.append(msg);
       document.getElementById('messages')
@@ -37,12 +40,13 @@ class Chatroom extends React.Component {
 
   
   render() {
+ 
     return (
       <div>
         <h1>Chatroom</h1>
         <ul id="messages"></ul>
         <form id='chat-form' onSubmit={this.handleSend}>
-          <input id="m" autocomplete="off" />
+          <input id="m" autoComplete="off" onChange={this.update('message')}/>
           <button>Send</button>
         </form>
       </div>
