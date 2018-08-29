@@ -3,9 +3,9 @@ import { Switch, Link, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 import GreetingContainer from './greeting/greeting_container';
+import ChatroomContainer from './chatroom/chatroom_container.js';
 import LogInFormContainer from './session_form/login_form_container';
 import SignUpFormContainer from './session_form/signup_form_container';
-import ChatroomContainer from './chatroom/chatroom_container.js';
 
 const App = () => (
   <div>
