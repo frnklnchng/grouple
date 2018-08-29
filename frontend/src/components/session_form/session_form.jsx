@@ -47,9 +47,9 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     return (
-      <ul>
+      <ul className="errors-list">
         {Object.values(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>{error}</li>
+          <li className="errors" key={`error-${i}`}>{error}</li>
         ))}
       </ul>
     );
@@ -60,45 +60,46 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    const extendedForm = () => {
-      return (
-        <div className="login-form-container">
-          <br />
-          <input className="login-firstname"
-            type="text"
-            placeholder="First Name"
-            value={this.state.first_name}
-            onChange={this.update('first_name')}
-          />
-          <input className="login-lastname"
-            type="text"
-            placeholder="Last Name"
-            value={this.state.last_name}
-            onChange={this.update('last_name')}
-          />
-          <input className="login-email"
-            type="text"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.update('email')}
-          />
-        </div>
-      );
-    };
+    // const extendedForm = () => {
+    //   return (
+    //     <div className="login-form-container">
+    //       <br />
+    //       <input className="login-firstname"
+    //         type="text"
+    //         placeholder="First Name"
+    //         value={this.state.first_name}
+    //         onChange={this.update('first_name')}
+    //       />
+    //       <input className="login-lastname"
+    //         type="text"
+    //         placeholder="Last Name"
+    //         value={this.state.last_name}
+    //         onChange={this.update('last_name')}
+    //       />
+    //       <input className="login-email"
+    //         type="text"
+    //         placeholder="Email"
+    //         value={this.state.email}
+    //         onChange={this.update('email')}
+    //       />
+    //     </div>
+    //   );
+    // };
 
-    let formtype = this.props.formType === "signup" ? "Sign up" : "Log in";
+    // let formtype = this.props.formType === "signup" ? "Sign up" : "Log in";
     let bttntype = this.props.formType === "signup" ? "Sign Up" : "Log In";
 
     return (
       <div className="login-form-container" ref={node => this.node = node}>
         <form onSubmit={this.handleSubmit}>
-          Welcome to Grouple!
-          {" " + formtype + " now!"}
+          <div className="login-form-greeting-1">Welcome to Grouple!</div>
+          <div className="login-form-greeting-2">We're so excited to see you!</div>
+          {/* {" " + formtype + " now!"} */}
           <div className="login-form">
-            {this.props.formType === "signup" ? extendedForm() : <br />}
-            <input className="login-username"
+            {/* {this.props.formType === "signup" ? extendedForm() : <br />} */}
+            <input className="login-email"
               type="text"
-              placeholder="Username"
+              placeholder="Email"
               value={this.state.email}
               onChange={this.update('email')}
             />
