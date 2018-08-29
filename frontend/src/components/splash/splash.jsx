@@ -39,11 +39,11 @@ class Splash extends React.Component {
       <div className="splash">
         <div className="splash-nav">
           <Link to="/">
-            <h2 className="splash-logo">Grouple</h2>
+            <h2 className="splash-logo">💬 Grouple</h2>
           </Link>
           <div className="splash-auth">
             <button className="splash-login" onClick={this.openModal('login')}>Log In</button>
-            <button className="splash-signup" onClick={this.openModal('signup')}>Sign Up</button>
+            {/* <button className="splash-signup" onClick={this.openModal('signup')}>Sign Up</button> */}
           </div>
         </div>
 
@@ -56,9 +56,10 @@ class Splash extends React.Component {
         </ReactModal>
 
         <div className="splash-quote">
-          <p className="splash-quote-header">Find fellow <span className="splash-insp">Redditors</span>.</p>
-          <p>Join the Grouple community.</p>
-          <button className="splash-quote-signup" onClick={this.openModal('signup')}>Sign Up</button>
+          <p className="splash-quote-header">Chat with fellow Redditors! 😄</p>
+          <p>Explore the Grouple community.</p>
+          <p>Joining is as easy as creating a Reddit account.</p>
+          <button className="splash-quote-signup" onClick={this.openModal('login')}>Log In</button>
         </div>
       </div>
     );
