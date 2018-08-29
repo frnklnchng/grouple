@@ -6,7 +6,20 @@ const validateMessageInput = require('../../validation/message');
 
 const router = express.Router();
 
-router.post('/', (request, response) => {
+//GET /api/messages
+router.get('/', (request, response) => {
+  Message.find({},  (err, messages) => {
+    let msgMap = {};
+
+    messages.forEach((msg) => {
+      msgMap[msg._id] = 'msg';
+    });
+
+    response.send(msgMap);
+  });
+});
+
+router.post('/post', (request, response) => {
     const { errors, isValid } = validateMessageInput(request.body);
     if (!isValid) return response.status(400).json(errors);
 

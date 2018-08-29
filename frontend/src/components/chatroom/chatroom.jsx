@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
+import axios from 'axios';
+
 
 class Chatroom extends React.Component {
   constructor(props){
@@ -12,6 +14,14 @@ class Chatroom extends React.Component {
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
+    axios.get('/api/messages')
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
   }
 
   update(field) {
