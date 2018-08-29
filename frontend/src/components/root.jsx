@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 
 const Root = ({ store }) => {
+  // delete
   return (
     <Provider store={store}>
       <HashRouter>
