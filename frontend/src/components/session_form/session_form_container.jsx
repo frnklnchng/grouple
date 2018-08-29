@@ -21,7 +21,7 @@ const navType = (location) => {
   //   <div>Don't have an account? <Link to="/signup">Sign Up</Link></div>
   // );
   return (
-    <div>Don't have an account? <a href="https://www.reddit.com/register">Sign Up</a></div>
+    <div>Don't have a Reddit account? <a href="https://www.reddit.com/register">Sign Up</a></div>
   );
 };
 
