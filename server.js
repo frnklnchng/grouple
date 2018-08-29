@@ -28,6 +28,5 @@ app.listen(port, () => {
 });
 
 app.get('/', (request, response) => {
-  // response.json({ Splash: 'Welcome to Grouple' });
   response.sendFile(__dirname + '/index.html');
 });

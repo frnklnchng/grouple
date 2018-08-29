@@ -4,8 +4,10 @@ import './index.css';
 import jwt_decode from 'jwt-decode';
 import * as APIUtil from './util/session_api_util';
 import configureStore from './store/store';
-import App from './App.jsx';
+import Root from './components/Root';
 import registerServiceWorker from './registerServiceWorker';
+
+window.logoutUser = APIUtil.logoutUser;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,8 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  window.dispatch = store.dispatch;
+
 
   const root = document.getElementById('root');
-  ReactDOM.render(<App store={store} />, root);
+  ReactDOM.render(<Root store={store} />, root);
   registerServiceWorker();
 });

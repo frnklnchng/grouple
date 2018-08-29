@@ -9,14 +9,16 @@ const Greeting = ({ currentUser, logout }) => {
       <Link to="/signup">Sign up!</Link>
     </nav>
   );
-  const personalGreeting = ({ handle }) => (
+  const personalGreeting = ({ email }) => (
     <hgroup className="header-group">
-      <h2 className="header-name">Hi, {handle}!</h2>
-      <button className="header-button" onClick={logout}>Log Out</button>
+      <h2 className="header-name">Hi, {email}!</h2>
+      <button className="header-button" onClick={() => logout()}>Log Out</button>
     </hgroup>
   );
 
-  return currentUser.handle !== undefined ? personalGreeting(currentUser) : sessionLinks();
+  console.log(currentUser);
+
+  return currentUser.handle ? sessionLinks() : personalGreeting(currentUser);
 };
 
 
