@@ -10,6 +10,10 @@ const MessageSchema = new Schema({
   //   type: Schema.Types.ObjectId,
   //   ref: 'subreddits'
   // },
+  userId: {
+    type: String,
+    // required: true
+  },
   text: {
     type: String,
     required: true

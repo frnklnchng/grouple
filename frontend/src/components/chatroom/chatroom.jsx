@@ -9,20 +9,19 @@ class Chatroom extends React.Component {
     super(props);
     this.socket = io.connect();
     this.state = {
-      message: ""
+      message: "",
+      msgs: {},
     };
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
-    axios.get('/api/messages')
-      .then((response) => {
-        console.log(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-
+    // debugger
   }
+  componentDidMount() {
+    this.props.fetchAllMessages().then((response) => this.setState({msgs: response}));
+    // debugger
+  }
+  
 
   update(field) {
     return e => this.setState({
@@ -48,7 +47,7 @@ class Chatroom extends React.Component {
 
   
   render() {
- 
+    // debugger
     return (
       <div>
         <h1>Chatroom</h1>

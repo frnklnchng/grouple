@@ -12,7 +12,7 @@ router.get('/', (request, response) => {
     let msgMap = {};
 
     messages.forEach((msg) => {
-      msgMap[msg._id] = 'msg';
+      msgMap[msg._id] = msg;
     });
 
     response.send(msgMap);
@@ -27,6 +27,7 @@ router.post('/post', (request, response) => {
       // userId: "5b82fee8dc285b927df3e357",
       // subreddit: request.subreddit.id,
       text: request.body.text,
+      userId: request.body.userId,
     });
 
     newMessage.save().then(message => {
