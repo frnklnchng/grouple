@@ -1,3 +1,4 @@
+const socket = require('socket.io');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -7,12 +8,11 @@ const passportSetup =  require('./config/passport');
 const users = require('./routes/api/users');
 const messages = require('./routes/api/messages');
 const database = require('./config/keys').mongoURI;
-const port = process.env.PORT || 5000;
 passportSetup(passport);
 
 mongoose
   .connect(database, { useNewUrlParser: true })
-  .then(() => console.log('Connected to MongoDB successfully'))
+  .then(() => console.log('Connected to Mongo Bongo successfully'))
   .catch(error => console.log(error));
 
 const app = express();
@@ -21,12 +21,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/messages', messages);
-app.use(express.static('./'));
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+const server = app.listen(process.env.PORT || 5000);
+const io = socket(server);
 
-app.get('/', (request, response) => {
-  response.sendFile(__dirname + '/index.html');
+io.sockets.on('connection', function(socket) {
+  console.log('a user connected');
 });

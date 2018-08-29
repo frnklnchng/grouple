@@ -5,10 +5,7 @@ class Splash extends Component {
   render() {
     return (
       <div className="splash">
-      
         <h1>this is the splash page</h1>
-
-        
       </div>
     );
   }
