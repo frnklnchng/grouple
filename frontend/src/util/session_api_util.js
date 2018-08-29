@@ -4,9 +4,10 @@ import jwt_decode from 'jwt-decode';
 const $ = window.$;
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
-// We can use axios to set a default header
+
+
 export const setAuthToken = token => {
   if (token) {
     // Apply to every request
@@ -18,9 +19,9 @@ export const setAuthToken = token => {
 };
 
 // Register User
-export const registerUser = (userData, history) => dispatch => {
+export const signup = (userData, history) => dispatch => {
   axios
-    .post('/api/users/signup', userData)
+    .post('/api/users/register', userData)
     .then(res => {
       // Save to localStorage
       const { token } = res.data;
@@ -68,7 +69,7 @@ export const loginUser = userData => dispatch => {
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {
-    type: RECEIVE_CURRENT_USER,
+    type: SET_CURRENT_USER,
     payload: decoded
   };
 };

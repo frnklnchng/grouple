@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SessionForm from './session_form';
-import { registerUser } from '../../util/session_api_util';
+import { signup } from '../../util/session_api_util';
 
 const mstp = ({errors}) => {
   return {
@@ -14,7 +14,7 @@ const mstp = ({errors}) => {
 
 const mdtp = (dispatch) => {
   return {
-    processForm: (user) => dispatch(registerUser(user)),
+    processForm: (user) => dispatch(signup(user)),
   };
 };
 
