@@ -16,10 +16,7 @@ const Greeting = ({ currentUser, logout }) => {
     </hgroup>
   );
 
-  console.log(currentUser);
-
   return currentUser.handle ? sessionLinks() : personalGreeting(currentUser);
 };
-
 
 export default Greeting;
