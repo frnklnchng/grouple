@@ -6,8 +6,6 @@ export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
-
-
 export const setAuthToken = token => {
   if (token) {
     // Apply to every request
@@ -21,7 +19,7 @@ export const setAuthToken = token => {
 // Register User
 export const signup = (userData, history) => dispatch => {
   axios
-    .post('/api/users/register', userData)
+    .post('/api/users/signup', userData)
     .then(res => {
       // Save to localStorage
       const { token } = res.data;

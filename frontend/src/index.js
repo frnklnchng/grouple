@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './stylesheets/index.css';
 import jwt_decode from 'jwt-decode';
-import * as APIUtil from './util/session_api_util';
+
+import './stylesheets/index.css';
+import Root from './components/Root';
 import configureStore from './store/store';
-import Root from './components/root';
+import * as APIUtil from './util/session_api_util';
 import registerServiceWorker from './registerServiceWorker';
 
 window.logoutUser = APIUtil.logoutUser;
-
 
 document.addEventListener('DOMContentLoaded', () => {
   let store = configureStore();
@@ -30,11 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = '/login';
     }
   }
-
+  
   window.dispatch = store.dispatch;
 
-
-  const root = document.getElementById('root');
-  ReactDOM.render(<Root store={store} />, root);
+  const rootElement = document.getElementById('root');
+  ReactDOM.render(<Root store={store} />, rootElement);
   registerServiceWorker();
 });
