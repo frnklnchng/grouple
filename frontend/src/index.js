@@ -4,7 +4,7 @@ import './stylesheets/index.css';
 import jwt_decode from 'jwt-decode';
 import * as APIUtil from './util/session_api_util';
 import configureStore from './store/store';
-import Root from './components/Root';
+import Root from './components/root';
 import registerServiceWorker from './registerServiceWorker';
 
 window.logoutUser = APIUtil.logoutUser;
