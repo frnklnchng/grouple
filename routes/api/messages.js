@@ -17,6 +17,14 @@ router.get('/', (request, response) => {
 
     response.send(msgMap);
   });
+  // Message.find({}).sort({date: 'descending'}).exec((err, messages) => {
+  //   let msgMap = {};
+  //   messages.forEach((msg) => {
+  //     msgMap[msg._id] = msg;
+  //   });
+
+  //   response.send(msgMap);
+  // })
 });
 
 router.post('/post', (request, response) => {

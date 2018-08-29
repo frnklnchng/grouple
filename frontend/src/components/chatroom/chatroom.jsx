@@ -45,9 +45,13 @@ class Chatroom extends React.Component {
     });
   }
 
+  renderPrevMsgs() {
+
+  }
+
   
   render() {
-    // debugger
+    debugger
     return (
       <div>
         <h1>Chatroom</h1>
