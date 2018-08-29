@@ -28,9 +28,7 @@ class Chatroom extends React.Component {
   }
 
   chatOnEmit(){
-    console.log('ran it!');
     this.socket.on('chat message', function (msg) {
-      console.log('ah, new message!!');
       let chatElem = document.createElement("li");
       chatElem.append(msg);
       document.getElementById('messages')
