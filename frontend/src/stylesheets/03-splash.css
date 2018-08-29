@@ -1,0 +1,100 @@
+.splash {
+  background: 
+    url("https://cdnb.artstation.com/p/assets/images/images/012/298/143/large/alena-aenami-cold-1k.jpg?1534082874");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+}
+
+.splash-nav {
+  display: flex;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  height: 64px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.splash-login {
+  font: normal 16px 'Open Sans', sans-serif;
+  right: 28px;
+  text-align: right;
+  position: relative;
+  padding: 4px 20px 4px 20px;
+  background: transparent;
+  color: white;
+  border: none;
+}
+
+.splash-signup {
+  font: normal 16px 'Open Sans', sans-serif;
+  font-weight: bold;
+  right: 25px;
+  text-align: right;
+  position: relative;
+  padding: 4px 20px 4px 20px;
+  background: white;
+  border: 2px solid white;
+  color: black;
+}
+
+.splash-signup:hover {
+  color: #c0c0c0;
+}
+
+.splash-logo {
+  font: normal 28px 'Montserrat', sans-serif;
+  font-weight: bolder;
+  display: inline-block;
+  position: relative;
+  color: white;
+  left: 24px;
+}
+
+.splash-logo:hover {
+  animation: flicker 0.75s infinite alternate;
+}
+
+.splash-insp {
+  transition: all 0.75s ease;
+}
+
+.splash-insp:hover {
+  text-shadow: 0 0 30px white;
+}
+
+.splash-quote {
+  font: normal 28px 'Open Sans', sans-serif;
+  text-align: center;
+  color: white;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+}
+
+.splash-quote-header {
+  font: normal 56px 'Open Sans', sans-serif;
+}
+
+.splash-quote-signup {
+  font: normal 24px 'Open Sans', sans-serif;
+  font-weight: bold;
+  padding: 8px 32px 8px 32px;
+  background: white;
+  border: 2px solid white;
+  color: black;
+  margin-top: 12px;
+}
+
+.splash-quote-signup:hover {
+  color: #c0c0c0;
+}

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './stylesheets/index.css';
+import './stylesheets/00-entry.css';
 import jwt_decode from 'jwt-decode';
 import * as APIUtil from './util/session_api_util';
 import configureStore from './store/store';
 import Root from './components/root';
 import registerServiceWorker from './registerServiceWorker';
 
-window.logoutUser = APIUtil.logoutUser;
+window.logout = APIUtil.logout;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
       // Logout user
-      store.dispatch(APIUtil.logoutUser());
+      store.dispatch(APIUtil.logout());
       // Redirect to login
       window.location.href = '/login';
     }

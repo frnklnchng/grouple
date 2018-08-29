@@ -1,0 +1,79 @@
+/* @import url("//fonts.googleapis.com/css?family=Hind");
+@import url("//fonts.googleapis.com/css?family=Montserrat"); */
+/* @import url("//fonts.googleapis.com/css?family=Proxima+Nova"); */
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f3f5f6;
+}
+
+a {
+  background: transparent;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+a:link {
+    color: #128fdc;
+}
+
+a:visited {
+    color: #128fdc;
+}
+
+button {
+  border-radius: 3px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+*:focus {
+  outline: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+nav ul {
+  list-style: none;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes flicker {
+  to { text-shadow: 0 0 30px white; }
+}
+
+@keyframes rainbow {
+	0% { color: #ff2400; }
+	12.5% {	color: #e81d1d; }
+	25% {	color: #e8b71d; }
+	37.5% {	color: #e3e81d; }
+	50% { color: #1de840; }
+	62.5% { color: #1ddde8; }
+	75% { color: #2b1de8; }
+	87.5% { color: #dd00f3; }
+	100% { color: #f30000; }
+}
+
+@keyframes iconOpacity {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}
