@@ -20,7 +20,8 @@ export const postMessage = (message) => dispatch => {
   return (
     axios.post('/api/messages/post', message)
       .then((response) => {
-        dispatch(postMessage(response.data));
+        console.log(response.data)
+        // dispatch(postMessage(response.data));
       })
       .catch((error) => {
         console.log(error);

@@ -32,10 +32,15 @@ class Chatroom extends React.Component {
   handleSend(e){
     e.preventDefault();
     //send to db
+    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1})
+      // .then();
+    // debuggerdebugger
     //set on local state
     //emit message with msg
+
+    //set current user name to be the message
     
-    this.socket.emit('chat message', this.state.message);
+    this.socket.emit('chat message', {message: this.state.message, username: this.props.currentUser});
     this.setState({
       message: ""
     });
@@ -46,8 +51,9 @@ class Chatroom extends React.Component {
     //set onto local state
     //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
+      debugger
       let chatElem = document.createElement("li");
-      chatElem.append(msg);
+      chatElem.append(msg.message);
       document.getElementById('messages').append(chatElem);
       document.getElementById('messages').className = 'msg';
       
