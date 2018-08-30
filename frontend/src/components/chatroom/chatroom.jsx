@@ -46,16 +46,18 @@ class Chatroom extends React.Component {
   }
 
   renderPrevMsgs() {
-
+    return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
   }
 
   
   render() {
-    debugger
+    // debugger
     return (
       <div>
         <h1>Chatroom</h1>
-        <ul id="messages"></ul>
+        <ul id="messages">
+        { this.renderPrevMsgs() }
+        </ul>
         <form id='chat-form' onSubmit={this.handleSend}>
           <input id="m" autoComplete="off" onChange={this.update('message')}/>
           <button>Send</button>
