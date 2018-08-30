@@ -11,7 +11,7 @@ class Chatroom extends React.Component {
 
     this.state = {
       message: "",
-      msgs: {},
+      msgs: Array.from(this.props.msgs),
     };
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
@@ -19,8 +19,20 @@ class Chatroom extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllMessages().then((response) => this.setState({msgs: response}));
+    const that = this;
+    this.props.fetchAllMessages();
+    this.setState({msgs: this.props.msgs})
+
   }
+  
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      msgs: nextProps.msgs
+    })
+    // debugger
+  }
+
+  
   
 
   update(field) {
@@ -34,13 +46,14 @@ class Chatroom extends React.Component {
     //send to db
     this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1})
       // .then();
-    // debuggerdebugger
+    // debugger
     //set on local state
     //emit message with msg
 
     //set current user name to be the message
     
-    this.socket.emit('chat message', {message: this.state.message, username: this.props.currentUser});
+    this.socket.emit('chat message', {text: this.state.message, userId: this.props.currentUser});
+    // this.socket.emit('chat message', {message: this.state.message, username: this.props.currentUser});
     this.setState({
       message: ""
     });
@@ -49,20 +62,23 @@ class Chatroom extends React.Component {
   
   chatOnEmit(){
     //set onto local state
+    const that = this;
     //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
-      debugger
-      let chatElem = document.createElement("li");
-      chatElem.append(msg.message);
-      document.getElementById('messages').append(chatElem);
-      document.getElementById('messages').className = 'msg';
-      
+      let msgs = Array.from(that.state.msgs)
+      msgs.push(msg);
+      that.setState({msgs: msgs});
+
     });
   }
 
   renderPrevMsgs() {
     // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
-    let messages = Object.values(this.props.msgs);
+    // let messages = Object.values(this.props.msgs);
+    let messages = Array.from(this.state.msgs)
+    if(!messages.length){
+      return;
+    }
     let result = [];
     let prevId = '';
     for(let i = 0; i < messages.length; i++){
@@ -78,6 +94,7 @@ class Chatroom extends React.Component {
 
   
   render() {
+    // debugger
     return (
       <div>
         <h1>Chatroom</h1>

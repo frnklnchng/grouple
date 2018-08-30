@@ -7,7 +7,7 @@ import { fetchAllMessages, postMessage } from '../../util/message_util'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    msgs: state.entities.msgs,
+    msgs: Object.values(state.entities.msgs),
     currentUser: state.session.email,
   }
 };
