@@ -17,6 +17,8 @@ export const fetchAllMessages = () => dispatch => {
   )
 }
 
+// export const storeMessage
+
 export const getAllMessages = (allMsgs) => {
   return {
     type: GET_ALL_MESSAGES,

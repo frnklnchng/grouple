@@ -8,6 +8,7 @@ class Chatroom extends React.Component {
   constructor(props){
     super(props);
     this.socket = io.connect();
+
     this.state = {
       message: "",
       msgs: {},
@@ -15,11 +16,10 @@ class Chatroom extends React.Component {
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
-    // debugger
   }
+
   componentDidMount() {
     this.props.fetchAllMessages().then((response) => this.setState({msgs: response}));
-    // debugger
   }
   
 
@@ -31,17 +31,22 @@ class Chatroom extends React.Component {
 
   handleSend(e){
     e.preventDefault();
-    this.socket.emit('chat message', document.getElementById('m').value);
-    document.getElementById('m').value = '';
+    //send to db
+    this.socket.emit('chat message', this.state.message);
+    this.setState({
+      message: ""
+    });
     return false;
   }
 
   chatOnEmit(){
-    this.socket.on('chat message', function (msg) {
+    const outside = 'outside';
+    this.socket.on('chat message', (msg) => {
       let chatElem = document.createElement("li");
       chatElem.append(msg);
-      document.getElementById('messages')
-        .append(chatElem);
+      document.getElementById('messages').append(chatElem);
+      document.getElementById('messages').className = 'msg';
+      
     });
   }
 
@@ -51,7 +56,6 @@ class Chatroom extends React.Component {
 
   
   render() {
-    // debugger
     return (
       <div>
         <h1>Chatroom</h1>
@@ -59,7 +63,7 @@ class Chatroom extends React.Component {
         { this.renderPrevMsgs() }
         </ul>
         <form id='chat-form' onSubmit={this.handleSend}>
-          <input id="m" autoComplete="off" onChange={this.update('message')}/>
+          <input id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
           <button>Send</button>
         </form>
       </div>
