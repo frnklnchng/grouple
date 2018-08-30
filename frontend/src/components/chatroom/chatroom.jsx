@@ -17,12 +17,12 @@ class Chatroom extends React.Component {
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
   }
-
+  
   componentDidMount() {
     const that = this;
     this.props.fetchAllMessages();
     this.setState({msgs: this.props.msgs})
-
+    
   }
   
   componentWillReceiveProps(nextProps) {
@@ -68,8 +68,10 @@ class Chatroom extends React.Component {
       let msgs = Array.from(that.state.msgs)
       msgs.push(msg);
       that.setState({msgs: msgs});
-
+      let scrollDiv = document.getElementById("chatroom");
+      scrollDiv.scrollTop = scrollDiv.scrollHeight; 
     });
+    
   }
 
   renderPrevMsgs() {
@@ -96,15 +98,17 @@ class Chatroom extends React.Component {
   render() {
     // debugger
     return (
-      <div>
+      <div className="chat-component">
         <h1>Chatroom</h1>
-        <ul id="messages">
-        { this.renderPrevMsgs() }
-        </ul>
-        <form id='chat-form' onSubmit={this.handleSend}>
-          <input id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
-          <button>Send</button>
-        </form>
+        <div className='chatroom' id='chatroom'>
+          <ul id="messages">
+          { this.renderPrevMsgs() }
+          </ul>
+        </div>
+          <form id='chat-form' onSubmit={this.handleSend}>
+            <input id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+            <button>Send</button>
+          </form>
       </div>
     )
   }
