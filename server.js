@@ -33,8 +33,8 @@ http.listen(port, () => {
 
 
 io.on('connection', function (socket) {
-  console.log('a user connected');
-  socket.broadcast.emit('hi');
+  // console.log('a user connected');
+  socket.broadcast.emit('welcome');
   socket.on('chat message', function (msg) {
     io.emit('chat message', msg);
   });
