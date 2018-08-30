@@ -93,7 +93,7 @@ class SessionForm extends React.Component {
       <div className="login-form-container" ref={node => this.node = node}>
         <form onSubmit={this.handleSubmit}>
           <div className="login-form-greeting-1">Welcome to Grouple!</div>
-          <div className="login-form-greeting-2">We're so excited to see you!</div>
+          <div className="login-form-greeting-2">We're so excited to have you!</div>
           {/* {" " + formtype + " now!"} */}
           <div className="login-form">
             {/* {this.props.formType === "signup" ? extendedForm() : <br />} */}
