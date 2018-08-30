@@ -61,6 +61,8 @@ class Chatroom extends React.Component {
   }
   
   chatOnEmit(){
+    this.scrollToBottom() 
+
     //set onto local state
     const that = this;
     //check if new message is from same user, if not append label
@@ -68,8 +70,8 @@ class Chatroom extends React.Component {
       let msgs = Array.from(that.state.msgs)
       msgs.push(msg);
       that.setState({msgs: msgs});
-      let scrollDiv = document.getElementById("chatroom");
-      scrollDiv.scrollTop = scrollDiv.scrollHeight; 
+      this.scrollToBottom() 
+
     });
     
   }
@@ -94,6 +96,13 @@ class Chatroom extends React.Component {
     return result;
   }
 
+  scrollToBottom(){
+    let scrollDiv = document.getElementById("chatroom");
+    if(scrollDiv){
+      scrollDiv.scrollTop = scrollDiv.scrollHeight; 
+    }
+  }
+
   
   render() {
     // debugger
@@ -112,7 +121,6 @@ class Chatroom extends React.Component {
       </div>
     )
   }
-
 }
 
 export default Chatroom;
