@@ -16,6 +16,17 @@ export const fetchAllMessages = () => dispatch => {
     })
   )
 }
+export const postMessage = (message) => dispatch => {
+  return (
+    axios.post('/api/messages/post', message)
+      .then((response) => {
+        dispatch(postMessage(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
 
 // export const storeMessage
 

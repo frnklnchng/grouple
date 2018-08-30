@@ -2,18 +2,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'users'
-  },
+  // userId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'users'
+  // },
   // subredditId: {
   //   type: Schema.Types.ObjectId,
   //   ref: 'subreddits'
   // },
-  // userId: {
-  //   type: String,
-  //   // required: true
-  // },
+  userId: {
+    type: String,
+    // required: true
+  },
+  subredditId: {
+    type: String,
+    // required: true
+  },
+
   text: {
     type: String,
     required: true

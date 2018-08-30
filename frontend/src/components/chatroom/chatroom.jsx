@@ -32,15 +32,19 @@ class Chatroom extends React.Component {
   handleSend(e){
     e.preventDefault();
     //send to db
+    //set on local state
+    //emit message with msg
+    
     this.socket.emit('chat message', this.state.message);
     this.setState({
       message: ""
     });
     return false;
   }
-
+  
   chatOnEmit(){
-    const outside = 'outside';
+    //set onto local state
+    //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
       let chatElem = document.createElement("li");
       chatElem.append(msg);
@@ -51,7 +55,19 @@ class Chatroom extends React.Component {
   }
 
   renderPrevMsgs() {
-    return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
+    // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
+    let messages = Object.values(this.props.msgs);
+    let result = [];
+    let prevId = '';
+    for(let i = 0; i < messages.length; i++){
+      if(prevId != messages[i].userId){
+        result.push(<label className='username'>{messages[i].userId}</label>);
+        prevId = messages[i].userId;
+      }
+
+      result.push(<li className='msg'>{messages[i].text}</li>);
+    }
+    return result;
   }
 
   

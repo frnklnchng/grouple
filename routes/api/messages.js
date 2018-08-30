@@ -36,6 +36,7 @@ router.post('/post', (request, response) => {
       // subreddit: request.subreddit.id,
       text: request.body.text,
       userId: request.body.userId,
+      subredditId: request.body.subredditId,
     });
 
     newMessage.save().then(message => {
