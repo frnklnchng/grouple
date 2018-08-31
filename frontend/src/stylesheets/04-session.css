@@ -23,6 +23,7 @@
   height: 36px;
   border-radius: 3px;
   margin-top: 20px;
+  text-indent: 6px;
 }
 
 .login-password {
@@ -31,6 +32,7 @@
   height: 36px;
   border-radius: 3px;
   margin-top: 10px;
+  text-indent: 6px;
 }
 
 .errors {
