@@ -90,7 +90,7 @@ class Chatroom extends React.Component {
         result.push(<label className='username'>{messages[i].userId}</label>);
         prevId = messages[i].userId;
       }
-
+      debugger 
       result.push(<li className='msg'>{messages[i].text}</li>);
     }
     return result;
