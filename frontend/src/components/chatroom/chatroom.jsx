@@ -44,7 +44,7 @@ class Chatroom extends React.Component {
   handleSend(e){
     e.preventDefault();
     //send to db
-    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1})
+    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1, date: Date()})
       // .then();
     // debugger
     //set on local state
@@ -90,7 +90,7 @@ class Chatroom extends React.Component {
         result.push(<label className='username'>{messages[i].userId}</label>);
         prevId = messages[i].userId;
       }
-      debugger 
+
       result.push(<li className='msg'>{messages[i].text}</li>);
     }
     return result;
