@@ -87,11 +87,11 @@ class Chatroom extends React.Component {
     let prevId = '';
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
-        result.push(<label className='username'>{messages[i].userId}</label>);
+        result.push(<li className='chat-username'>{messages[i].userId}</li>);
         prevId = messages[i].userId;
       }
 
-      result.push(<li className='msg'>{messages[i].text}</li>);
+      result.push(<li className='chat-msg'>{messages[i].text}</li>);
     }
     return result;
   }
@@ -108,15 +108,17 @@ class Chatroom extends React.Component {
     // debugger
     return (
       <div className="chat-component">
-        <h1>Chatroom</h1>
+        <h1 className="chat-name">Chatroom</h1>
         <div className='chatroom' id='chatroom'>
           <ul id="messages">
           { this.renderPrevMsgs() }
           </ul>
         </div>
           <form id='chat-form' onSubmit={this.handleSend}>
-            <input id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
-            <button>Send</button>
+            <div className="chat-input-div">
+              <input className='chat-input' id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+              <button className="chat-submit">Send</button>
+            </div>
           </form>
       </div>
     )

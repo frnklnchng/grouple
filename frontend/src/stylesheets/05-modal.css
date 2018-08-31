@@ -1,4 +1,4 @@
-.auth-modal {
+/* .auth-modal {
   height: 440px;
   width: 100%;
   padding: 40px;
@@ -11,12 +11,40 @@
   transform: translate(-50%, -50%);
   animation-name: fadeIn;
   animation-duration: 0.5s;
+} */
+
+/* .auth-modal {
+  height: 100%;
+  width: 550px;
+  padding: 40px;
+  position: absolute;
+  text-align: center;
+  left: 55%;
+  background: #2c2c3e;
+  color: white;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+} */
+
+.auth-modal {
+  height: 100%;
+  width: 510px;
+  padding: 40px;
+  position: absolute;
+  text-align: center;
+  /* top: 50%; */
+  left: 56.5%;
+  background: #2c2c3e;
+  color: white;
+  /* transform: translate(-50%, -50%); */
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
 }
 
 .auth-modal-overlay {
   position: fixed;
   /* background: rgba(0, 0, 0, 0.5); */
-  background: rgba(245, 245, 245, 0.90);
+  background: rgba(245, 245, 245, 0.8);
   top: 0;
   left: 0;
   right: 0;
