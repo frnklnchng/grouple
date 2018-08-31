@@ -1,4 +1,5 @@
 .chat-component {
+  float: right;
   display: flex;
   flex-direction: column;
   width: 75%;
