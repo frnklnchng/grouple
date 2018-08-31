@@ -5,6 +5,7 @@
   width: 75%;
   height: 100vh;
   padding: 14px 32px;
+  border-left: 1px solid lightgrey;
 }
 
 .chatroom {
@@ -19,8 +20,7 @@
   font-size: 20px;
   font-weight: bold;
   padding-bottom: 14px;
-  border-bottom: 1px solid grey;
-  /* padding-left: 42px; */
+  border-bottom: 1px solid lightgrey;
 }
 
 .chat-user {
