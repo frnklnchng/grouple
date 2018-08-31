@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
 import axios from 'axios';
-
+import GreetingContainer from '../greeting/greeting_container';
 
 class Chatroom extends React.Component {
   constructor(props){
@@ -87,7 +87,12 @@ class Chatroom extends React.Component {
     let prevId = '';
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
-        result.push(<li className='chat-username'>{messages[i].userId}</li>);
+        result.push(
+        <li className='chat-user'>
+          {/* <img className='chat-user-avatar' src="https://png.icons8.com/material/96/000000/user-male-circle.png"></img> */}
+          <img className='chat-user-avatar' src="https://cdn1.iconfinder.com/data/icons/somacro___dpi_social_media_icons_by_vervex-dfjq/500/reddit.png"></img>
+          <div className='chat-user-name'>{messages[i].userId}</div>
+        </li>);
         prevId = messages[i].userId;
       }
 
@@ -108,7 +113,7 @@ class Chatroom extends React.Component {
     // debugger
     return (
       <div className="chat-component">
-        <h1 className="chat-name">Chatroom</h1>
+        <h1 className="chat-name">r/Chatroom</h1>
         <div className='chatroom' id='chatroom'>
           <ul id="messages">
           { this.renderPrevMsgs() }
@@ -116,7 +121,7 @@ class Chatroom extends React.Component {
         </div>
           <form id='chat-form' onSubmit={this.handleSend}>
             <div className="chat-input-div">
-              <input className='chat-input' id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+            <input className='chat-input' id="m" placeholder={`Message ${"r/Chatroom"}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
               <button className="chat-submit">Send</button>
             </div>
           </form>

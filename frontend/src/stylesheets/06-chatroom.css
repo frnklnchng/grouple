@@ -5,6 +5,7 @@
   width: 75%;
   height: 100vh;
   padding: 14px 32px;
+  border-left: 1px solid lightgrey;
 }
 
 .chatroom {
@@ -19,35 +20,47 @@
   font-size: 20px;
   font-weight: bold;
   padding-bottom: 14px;
+  border-bottom: 1px solid lightgrey;
 }
 
-.chat-username {
+.chat-user {
+  display: flex;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.chat-user-avatar {
+  height: 36px;
+  padding-right: 6px;
+}
+
+.chat-user-name {
+  position: relative;
+  transform: translateY(25%); 
   color: darkslateblue;
   font-size: 18px;
   font-weight: bold;
-  padding-top: 12px;
-  padding-bottom: 12px;
 }
 
 .chat-msg {
   max-width: 99%;
   line-height: 26px;
   word-wrap: break-word;
+  padding-left: 42px;
 }
 
 .chat-input-div {
   display: flex;
-  /* white-space: nowrap; */
 }
 
 .chat-input {
-  /* width: auto; */
   font: normal 16px 'Open Sans', sans-serif;
   flex-grow: 1;
   height: 34px;
   margin-right: 6px;
   border-radius: 5px;
   text-indent: 6px;
+  margin-left: 42px;
 }
 
 .chat-submit {
