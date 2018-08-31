@@ -44,12 +44,12 @@ class Chatroom extends React.Component {
   handleSend(e){
     e.preventDefault();
     //send to db
-    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1})
+    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1, date: Date()})
       // .then();
     // debugger
     //set on local state
     //emit message with msg
-
+    // debugger
     //set current user name to be the message
     
     this.socket.emit('chat message', {text: this.state.message, userId: this.props.currentUser});

@@ -8,23 +8,23 @@ const router = express.Router();
 
 //GET /api/messages
 router.get('/', (request, response) => {
-  Message.find({},  (err, messages) => {
-    let msgMap = {};
-
-    messages.forEach((msg) => {
-      msgMap[msg._id] = msg;
-    });
-
-    response.send(msgMap);
-  });
-  // Message.find({}).sort({date: 'descending'}).exec((err, messages) => {
+  // Message.find({},  (err, messages) => {
   //   let msgMap = {};
+
   //   messages.forEach((msg) => {
   //     msgMap[msg._id] = msg;
   //   });
 
   //   response.send(msgMap);
-  // })
+  // });
+  Message.find({}).sort({date: 'ascending'}).exec((err, messages) => {
+    let msgMap = {};
+    messages.forEach((msg) => {
+      msgMap[msg._id] = msg;
+    });
+
+    response.send(msgMap);
+  })
 });
 
 router.post('/post', (request, response) => {
