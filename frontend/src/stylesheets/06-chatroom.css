@@ -1,0 +1,30 @@
+.username {
+  color: blue;
+}
+.chatroom{
+  height: 93%;
+  width: 98%;
+  overflow: auto;
+  top: 15px;
+  left: 5px;
+  position: absolute;
+}
+.messages {
+  /* width: 100%; */
+}
+.chat-component{
+  /* height: 100%; */
+  /* position: relative; */
+  overflow: none;
+}
+#chat-form{
+  height: 5%;
+  width: 100%;
+  bottom: 0px;
+  position: absolute;
+}
+#chat-form input {
+  width: 60%;
+  height: 90%;
+} 
+

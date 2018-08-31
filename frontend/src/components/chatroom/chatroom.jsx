@@ -17,12 +17,12 @@ class Chatroom extends React.Component {
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
   }
-
+  
   componentDidMount() {
     const that = this;
     this.props.fetchAllMessages();
     this.setState({msgs: this.props.msgs})
-
+    
   }
   
   componentWillReceiveProps(nextProps) {
@@ -61,6 +61,8 @@ class Chatroom extends React.Component {
   }
   
   chatOnEmit(){
+    this.scrollToBottom() 
+
     //set onto local state
     const that = this;
     //check if new message is from same user, if not append label
@@ -68,8 +70,10 @@ class Chatroom extends React.Component {
       let msgs = Array.from(that.state.msgs)
       msgs.push(msg);
       that.setState({msgs: msgs});
+      this.scrollToBottom() 
 
     });
+    
   }
 
   renderPrevMsgs() {
@@ -92,23 +96,31 @@ class Chatroom extends React.Component {
     return result;
   }
 
+  scrollToBottom(){
+    let scrollDiv = document.getElementById("chatroom");
+    if(scrollDiv){
+      scrollDiv.scrollTop = scrollDiv.scrollHeight; 
+    }
+  }
+
   
   render() {
     // debugger
     return (
-      <div>
+      <div className="chat-component">
         <h1>Chatroom</h1>
-        <ul id="messages">
-        { this.renderPrevMsgs() }
-        </ul>
-        <form id='chat-form' onSubmit={this.handleSend}>
-          <input id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
-          <button>Send</button>
-        </form>
+        <div className='chatroom' id='chatroom'>
+          <ul id="messages">
+          { this.renderPrevMsgs() }
+          </ul>
+        </div>
+          <form id='chat-form' onSubmit={this.handleSend}>
+            <input id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+            <button>Send</button>
+          </form>
       </div>
     )
   }
-
 }
 
 export default Chatroom;
