@@ -60,6 +60,13 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    const clientId = `client_id=smU_1KlDE_K5EA`;
+    const responseType = `response_type=code`;
+    const state = `state=grouple`;
+    const redirectURI = `redirect_uri=http://localhost:5000/api/oauth`;
+    const duration = `duration=permanent`;
+    const scope = `scope=identity`;
+    const authURL = `https://www.reddit.com/api/v1/authorize?${clientId}&${responseType}&${state}&${redirectURI}&${duration}&${scope}`;
     const extendedForm = () => {
       return (
         <div className="login-form-container">
@@ -82,6 +89,7 @@ class SessionForm extends React.Component {
             value={this.state.email}
             onChange={this.update('email')}
           />
+          <a href={authURL}>login using red</a>
         </div>
       );
     };
@@ -113,6 +121,7 @@ class SessionForm extends React.Component {
             <div className="session-form-ending-tag">{this.props.navLink}</div>
           </div>
         </form>
+        <a href={authURL}>**login using red**</a>
       </div>
     );
   }
