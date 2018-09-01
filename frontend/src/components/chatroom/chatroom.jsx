@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
 import axios from 'axios';
-
+import GreetingContainer from '../greeting/greeting_container';
 
 class Chatroom extends React.Component {
   constructor(props){
@@ -88,11 +88,16 @@ class Chatroom extends React.Component {
     let prevId = null;
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
-        result.push(<label className='username'>{messages[i].userId}</label>);
+        result.push(
+        <li className='chat-user'>
+          {/* <img className='chat-user-avatar' src="https://png.icons8.com/material/96/000000/user-male-circle.png"></img> */}
+          <img className='chat-user-avatar' src="https://cdn1.iconfinder.com/data/icons/somacro___dpi_social_media_icons_by_vervex-dfjq/500/reddit.png"></img>
+          <div className='chat-user-name'>{messages[i].userId}</div>
+        </li>);
         prevId = messages[i].userId;
       }
 
-      result.push(<li className='msg'>{messages[i].text}</li>);
+      result.push(<li className='chat-msg'>{messages[i].text}</li>);
     }
     return result;
   }
@@ -109,15 +114,17 @@ class Chatroom extends React.Component {
     // debugger
     return (
       <div className="chat-component">
-        <h1>Chatroom</h1>
+        <h1 className="chat-name">r/Chatroom</h1>
         <div className='chatroom' id='chatroom'>
           <ul id="messages">
           { this.renderPrevMsgs() }
           </ul>
         </div>
           <form id='chat-form' onSubmit={this.handleSend}>
-            <input id="m" autoComplete="off" onChange={this.update('message')} value={this.state.message} />
-            <button>Send</button>
+            <div className="chat-input-div">
+            <input className='chat-input' id="m" placeholder={`Message ${"r/Chatroom"}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+              <button className="chat-submit">Send</button>
+            </div>
           </form>
       </div>
     )
