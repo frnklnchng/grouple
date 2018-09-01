@@ -80,11 +80,12 @@ class Chatroom extends React.Component {
     // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
     // let messages = Object.values(this.props.msgs);
     let messages = Array.from(this.state.msgs)
+    // console.log(messages);
     if(!messages.length){
       return;
     }
     let result = [];
-    let prevId = '';
+    let prevId = null;
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
         result.push(<label className='username'>{messages[i].userId}</label>);
