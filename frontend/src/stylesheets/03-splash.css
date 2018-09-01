@@ -1,0 +1,85 @@
+.splash {
+  /* background-color: whitesmoke; */
+  background: url(https://media.wired.com/photos/5abece0a9ccf76090d775185/master/pass/hangoutsscreen_2.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  transition: 0.6s ease;
+}
+
+.splash-nav {
+  display: flex;
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  height: 64px;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.6s ease;
+}
+
+.splash-login {
+  font: normal 16px 'Open Sans', sans-serif;
+  font-weight: bold;
+  right: 50px;
+  text-align: right;
+  position: relative;
+  padding: 4px 20px 4px 20px;
+  background: white;
+  border: 2px solid white;
+  color: darkslateblue;
+  transition: 0.6s ease;
+}
+
+.splash-login:hover {
+  color: #c0c0c0;
+  transition: 0.6s ease;
+}
+
+.splash-logo {
+  font: normal 28px 'Montserrat', sans-serif;
+  font-weight: bolder;
+  display: inline-block;
+  position: relative;
+  color: darkslateblue;
+  left: 50px;
+  transition: 0.6s ease;
+}
+
+.splash-quote {
+  font: normal 24px 'Open Sans', sans-serif;
+  text-align: center;
+  color: darkslateblue;
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  transition: 0.6s ease;
+}
+
+.splash-quote-header {
+  font: normal 32px 'Open Sans', sans-serif;
+  transition: 0.6s ease;
+}
+
+.splash-quote-signup {
+  font: normal 24px 'Open Sans', sans-serif;
+  font-weight: bold;
+  padding: 8px 32px 8px 32px;
+  background: white;
+  border: 2px solid white;
+  color: #212124;
+  margin-top: 12px;
+  transition: 0.6s ease;
+}
+
+.splash-quote-signup:hover {
+  color: #c0c0c0;
+  transition: 0.6s ease;
+}
