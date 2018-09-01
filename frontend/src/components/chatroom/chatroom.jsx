@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
 import axios from 'axios';
 import GreetingContainer from '../greeting/greeting_container';
+import Greeting from '../greeting/greeting';
 
 class Chatroom extends React.Component {
   constructor(props){
@@ -28,7 +29,7 @@ class Chatroom extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       msgs: nextProps.msgs
-    })
+    });
     // debugger
   }
 
@@ -61,16 +62,16 @@ class Chatroom extends React.Component {
   }
   
   chatOnEmit(){
-    this.scrollToBottom() 
+    this.scrollToBottom(); 
 
     //set onto local state
     const that = this;
     //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
-      let msgs = Array.from(that.state.msgs)
+      let msgs = Array.from(that.state.msgs);
       msgs.push(msg);
       that.setState({msgs: msgs});
-      this.scrollToBottom() 
+      this.scrollToBottom();
 
     });
     
@@ -79,7 +80,7 @@ class Chatroom extends React.Component {
   renderPrevMsgs() {
     // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
     // let messages = Object.values(this.props.msgs);
-    let messages = Array.from(this.state.msgs)
+    let messages = Array.from(this.state.msgs);
     if(!messages.length){
       return;
     }
@@ -87,8 +88,10 @@ class Chatroom extends React.Component {
     let prevId = '';
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
+         
         result.push(
-        <li className='chat-user'>
+      
+        <li className='chat-user' key={i}>
           {/* <img className='chat-user-avatar' src="https://png.icons8.com/material/96/000000/user-male-circle.png"></img> */}
           <img className='chat-user-avatar' src="https://cdn1.iconfinder.com/data/icons/somacro___dpi_social_media_icons_by_vervex-dfjq/500/reddit.png"></img>
           <div className='chat-user-name'>{messages[i].userId}</div>
@@ -96,7 +99,7 @@ class Chatroom extends React.Component {
         prevId = messages[i].userId;
       }
 
-      result.push(<li className='chat-msg'>{messages[i].text}</li>);
+      result.push(<li className='chat-msg' key={messages[i]._id} >{messages[i].text}</li>);
     }
     return result;
   }
@@ -113,6 +116,7 @@ class Chatroom extends React.Component {
     // debugger
     return (
       <div className="chat-component">
+        <GreetingContainer /> 
         <h1 className="chat-name">r/Chatroom</h1>
         <div className='chatroom' id='chatroom'>
           <ul id="messages">
