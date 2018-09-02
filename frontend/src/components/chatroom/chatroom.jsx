@@ -64,10 +64,12 @@ class Chatroom extends React.Component {
     // this.setState({
     //   msgs: nextProps.msgs
     // })
-    let sorted = this.createSortedMsgs(nextProps.msgs);
-    this.setState({
-      msgs: sorted,
-    })
+    if(!Object.values(this.state.msgs).length){
+      let sorted = this.createSortedMsgs(nextProps.msgs);
+      this.setState({
+        msgs: sorted,
+      })
+    }
     // if(!this.state.msgs.length){
     //   let chatMsgs = []
     //   nextProps.msgs.forEach((msg) => {
@@ -138,7 +140,6 @@ class Chatroom extends React.Component {
     //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
       let msgs = Object.assign({}, that.state.msgs)
-      debugger
       msgs[that.props.subredditId].push(msg);
       
       that.setState({
@@ -153,7 +154,6 @@ class Chatroom extends React.Component {
   renderPrevMsgs() {
     // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
     // let messages = Object.values(this.props.msgs);
-    // debugger
     if(!Object.values(this.state.msgs).length || !this.props.subredditId){
       return (<div> no msgs </div>)
     }
