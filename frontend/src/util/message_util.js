@@ -1,5 +1,4 @@
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 //should only make the requests
 export const GET_ALL_MESSAGES = 'GET_ALL_MESSAGES';
 

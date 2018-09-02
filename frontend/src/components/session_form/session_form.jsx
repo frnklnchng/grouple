@@ -42,7 +42,7 @@ class SessionForm extends React.Component {
   }
 
   handleClick(e) {
-    this.node.contains(e.target) ? 'return' : this.props.history.push("/");
+    return this.node.contains(e.target) ? 'return' : this.props.history.push("/");
   }
 
   renderErrors() {
