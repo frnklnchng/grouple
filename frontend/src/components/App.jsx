@@ -4,7 +4,7 @@ import { ProtectedRoute } from '../util/route_util';
 
 import SplashContainer from './splash/splash_container';
 import GreetingContainer from './greeting/greeting_container';
-import ChatroomContainer from './chatroom/chatroom_container.js';
+import ChatroomContainer from './chatroom/chatroom_container';
 
 const App = () => (
   <div>

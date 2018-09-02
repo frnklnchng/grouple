@@ -5,7 +5,6 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // need all - React controlled inputs
       username: '',
       password: '',
       email: '',
@@ -13,36 +12,21 @@ class SessionForm extends React.Component {
       last_name: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.capitalize = this.capitalize.bind(this);
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return e => {
+      e.preventDefault();
+      this.setState({ [field]: e.currentTarget.value });
+    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
-  }
-
-  componentWillMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClick, false);
-
-    // if (this.props.errors && this.props.errors.length) {
-    //   this.props.clearErrors();
-    // }
-  }
-
-  handleClick(e) {
-    return this.node.contains(e.target) ? 'return' : this.props.history.push("/");
+    this.props.closeModal();
   }
 
   renderErrors() {
@@ -90,7 +74,7 @@ class SessionForm extends React.Component {
     let bttntype = this.props.formType === "signup" ? "Sign Up" : "Log In";
 
     return (
-      <div className="login-form-container" ref={node => this.node = node}>
+      <div className="login-form-container">
         <form onSubmit={this.handleSubmit}>
           <div className="login-form-greeting-1">Welcome to Grouple!</div>
           <div className="login-form-greeting-2">We're so excited to have you!</div>
@@ -109,7 +93,7 @@ class SessionForm extends React.Component {
               value={this.state.password}
               onChange={this.update('password')}
             />
-            {this.renderErrors()}
+            { this.renderErrors() }
             <button className="submit-bttn" onClick={this.handleSubmit}>{bttntype}</button>
             <div className="session-form-ending-tag">{this.props.navLink}</div>
           </div>

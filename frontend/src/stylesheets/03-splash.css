@@ -83,3 +83,13 @@
   color: #c0c0c0;
   transition: 0.6s ease;
 }
+
+.searchbar {
+  right: 0px;
+  width: 400px;
+  height: 40px;
+  bottom: -70px;
+  font-size: 15px;
+  padding-left: 10px;
+  position: absolute;
+}

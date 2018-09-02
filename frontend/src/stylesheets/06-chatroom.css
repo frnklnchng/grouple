@@ -27,6 +27,7 @@
   display: flex;
   padding-top: 6px;
   padding-bottom: 6px;
+  justify-content: space-between;
 }
 
 .chat-user-avatar {
@@ -78,4 +79,16 @@
 .chat-submit:hover {
   color: #c0c0c0;
   transition: 0.6s ease;
+}
+
+.chat-right {
+
+}
+
+.chat-date {
+  color: red;
+}
+
+.chat-time {
+  color: green;
 }

@@ -77,15 +77,18 @@ class Chatroom extends React.Component {
     return (
       <div className="chat-component">
         <h1 className="chat-name">r/Chatroom</h1>
+
         <div className='chatroom' id='chatroom'>
           <ul id="messages">{ this.renderPrevMsgs() }</ul>
         </div>
-          <form id='chat-form' onSubmit={this.handleSend}>
-            <div className="chat-input-div">
+
+        <form id='chat-form' onSubmit={this.handleSend}>
+          <div className="chat-input-div">
             <input className='chat-input' id="m" placeholder={`Message ${"r/Chatroom"}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
-              <button className="chat-submit">Send</button>
-            </div>
-          </form>
+            <button className="chat-submit">Send</button>
+          </div>
+        </form>
+        
       </div>
     );
   }
