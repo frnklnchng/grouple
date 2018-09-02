@@ -32,16 +32,14 @@ router.post('/post', (request, response) => {
     if (!isValid) return response.status(400).json(errors);
 
     const newMessage = new Message({
-      // userId: "5b82fee8dc285b927df3e357",
-      // subreddit: request.subreddit.id,
       text: request.body.text,
       userId: request.body.userId,
       subredditId: request.body.subredditId,
     });
 
-    newMessage.save().then(message => {
-      response.json(message);
-    });
+    newMessage
+      .save()
+      .then(message => response.json(message));
   }
 );
 

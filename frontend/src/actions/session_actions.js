@@ -1,6 +1,4 @@
 import * as APIUtil from '../util/session_api_util';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
