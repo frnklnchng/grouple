@@ -13,7 +13,8 @@ const router = express.Router();
 function userParams(formUser) {
   return {
     email: formUser.body.email,
-    password: formUser.body.password
+    password: formUser.body.password,
+    vistedChats: [],
   };
 }
 
@@ -26,7 +27,8 @@ router.get('/', (request, response) => {
 router.get('/current', passport.authenticate('jwt', { session: false }), (request, response) => {
   response.json({ 
     id: request.user.id,
-    email: request.user.email
+    email: request.user.email,
+    vistedChats: request.user.vistedChats,
   });
 });
 

@@ -17,6 +17,8 @@ class Chatroom extends React.Component {
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
+
+    debugger
   }
   
   componentDidMount() {
