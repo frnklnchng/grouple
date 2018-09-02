@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import SessionFormContainer from '../session_form/session_form_container';
+import SignUpFormContainer from '../session_form/signup_form_container';
 // import { receiveErrors } from '../../actions/session_actions';
 
 class Splash extends React.Component {
@@ -25,6 +26,7 @@ class Splash extends React.Component {
     // this.props.clearErrors();
 
     return () => {
+        
       this.setState({ showModal: true });
       this.props.history.push(formType);
     };
@@ -32,6 +34,9 @@ class Splash extends React.Component {
 
   closeModal() {
     this.setState({ showModal: false });
+  }
+
+  formType() {
   }
 
   render() {
@@ -43,7 +48,7 @@ class Splash extends React.Component {
           </Link>
           <div className="splash-auth">
             <button className="splash-login" onClick={this.openModal('login')}>Log In</button>
-            {/* <button className="splash-signup" onClick={this.openModal('signup')}>Sign Up</button> */}
+            <button className="splash-signup" onClick={this.openModal('signup')}>Sign Up</button>
           </div>
         </div>
 
@@ -59,6 +64,7 @@ class Splash extends React.Component {
           <p className="splash-quote-header">Chat with fellow Redditors! 😄</p>
           <p>Explore the Grouple community.</p>
           <p>Joining is as easy as creating a Reddit account.</p>
+
           <button className="splash-quote-signup" onClick={this.openModal('login')}>Log In</button>
         </div>
       </div>
