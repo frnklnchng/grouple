@@ -14,7 +14,7 @@ function userParams(formUser) {
   return {
     email: formUser.body.email,
     password: formUser.body.password,
-    vistedChats: [],
+    vistedChats: formUser.body.visitedChats,
   };
 }
 
@@ -73,7 +73,7 @@ router.post('/login', (request, response) => {
 
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id: user.id, name: user.email };
+        const payload = { id: user.id, name: user.email, visitedChats: user.visitedChats };
         jsonwebtoken.sign(
           payload,
           keys.secretOrKey,
@@ -90,6 +90,28 @@ router.post('/login', (request, response) => {
       }
     });
   });
+});
+
+router.post('/update_chats', (request, response) => {
+  const visitedChats = request.body.visitedChats;
+  const email = request.body.email;
+  const id = request.body.id;
+  // User.findOne({ email }).then(user => {
+  //   if(user) {
+  //     db.users.update(
+  //       { _id: id },
+  //       { $set: { visitedChats: visitedChats } }
+  //     )
+  //   }
+  // });
+  //  response.json({
+  //    msg: 'we did something?'
+  //  });
+
+  db.users.update(
+    { _id: id },
+    { $set: { visitedChats: visitedChats }}
+    );
 });
 
 
