@@ -1,8 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
-import axios from 'axios';
-import GreetingContainer from '../greeting/greeting_container';
+
 
 class Chatroom extends React.Component {
   constructor(props){

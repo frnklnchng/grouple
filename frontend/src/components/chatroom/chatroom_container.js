@@ -7,6 +7,7 @@ import { fetchAllMessages, postMessage } from '../../util/message_util'
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    // subredditName:  state.entities.subreddits[ownProps.match.params.subreddit],
     msgs: Object.values(state.entities.msgs),
     currentUser: state.session.email,
   }
