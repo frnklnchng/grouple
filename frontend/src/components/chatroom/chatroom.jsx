@@ -37,7 +37,7 @@ class Chatroom extends React.Component {
         msgs: chatMsgs,
         subredditId: this.props.subredditId,
       });
-      // debugger
+      debugger
     }
   }
 
@@ -49,7 +49,7 @@ class Chatroom extends React.Component {
     // this.setState({
     //   msgs: nextProps.msgs
     // })
-    // debugger
+    debugger
     if(!this.state.msgs.length){
       let chatMsgs = []
       nextProps.msgs.forEach((msg) => {
@@ -120,7 +120,9 @@ class Chatroom extends React.Component {
     this.socket.on('chat message', (msg) => {
       let msgs = Array.from(that.state.msgs)
       msgs.push(msg);
-      that.setState({msgs: msgs});
+      that.setState({
+        msgs: msgs, 
+      });
       this.scrollToBottom() 
 
     });
