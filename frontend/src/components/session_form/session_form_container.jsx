@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { signup, login } from '../../util/session_api_util';
+import { signup, login } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import SessionForm from './session_form'; 
 
@@ -35,7 +35,7 @@ const mapStateToProps = ({ errors }, { location }) => {
 
 const mapDispatchToProps = (dispatch, { location }) => {
   const processForm = formType(location) === 'signup' ? signup : login;
-
+  debugger 
   return {
     processForm: (user) => dispatch(processForm(user)),
     // demo: (user) => dispatch(login(user))
