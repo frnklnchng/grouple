@@ -35,79 +35,23 @@ class Chatroom extends React.Component {
       sortedMsgs[msg.subredditId].push(msg);
     });
     return sortedMsgs;
-    // debugger
   }
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   if(prevProps.subredditId != this.props.subredditId){
-  //     console.log('yo we needa switch');
-  //     let that = this;
-  //     let chatMsgs = []
-  //     this.state.msgs.forEach((msg) => {
-  //       if(msg.subredditId === that.props.subredditId){
-  //         chatMsgs.push(msg);
-  //       } 
-  //     });
-  //     this.setState({
-  //       msgs: chatMsgs,
-  //       subredditId: this.props.subredditId,
-  //     });
-  //     debugger
-  //   }
-  // }
 
-  // onlyCurSubMsgs(){
-
-  // }
   
   componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //   msgs: nextProps.msgs
-    // })
     if(!Object.values(this.state.msgs).length){
       let sorted = this.createSortedMsgs(nextProps.msgs);
       this.setState({
         msgs: sorted,
       })
     }
-    // if(!this.state.msgs.length){
-    //   let chatMsgs = []
-    //   nextProps.msgs.forEach((msg) => {
-    //     if (msg.subredditId === nextProps.subredditId) {
-    //       chatMsgs.push(msg);
-    //     }
-    //   })
-    //   this.setState({
-    //     msgs: chatMsgs,
-    //   });
-    // }
-
-    // else {
-    //   if (nextProps.subredditId != this.props.subredditId) {
-    //     console.log('yo we needa switch');
-    //     let that = this;
-    //     let chatMsgs = [];
-    //     // debugger
-    //     nextProps.msgs.forEach((msg) => {
-    //       if (msg.subredditId === nextProps.subredditId) {
-    //         chatMsgs.push(msg);
-    //       }
-    //     });
-    //     this.setState({
-    //       msgs: chatMsgs,
-    //       subredditId: nextProps.subredditId,
-    //     });
-
-    //     // debugger
-    //   }
-    // }
   }
 
   
   
 
   update(field) {
-    console.log(this.props.match.params)
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -140,6 +84,10 @@ class Chatroom extends React.Component {
     //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
       let msgs = Object.assign({}, that.state.msgs)
+      if(!msgs[that.props.subredditId]){
+        msgs[that.props.subredditId] = [];
+      }
+    
       msgs[that.props.subredditId].push(msg);
       
       that.setState({
@@ -158,6 +106,9 @@ class Chatroom extends React.Component {
       return (<div> no msgs </div>)
     }
     let subredditId = this.props.subredditId;
+    if(!this.state.msgs[subredditId]){
+      return (<div>No messages!</div>)
+    }
     let messages = Array.from(this.state.msgs[subredditId])
     // console.log(messages);
     if(!messages.length){
@@ -197,7 +148,7 @@ class Chatroom extends React.Component {
           <ChatIndex />
         </div>
         <div className="chat-component">
-          <h1 className="chat-name">r/Chatroom</h1>
+          <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
           <div className='chatroom' id='chatroom'>
             <ul id="messages">
             { this.renderPrevMsgs() }
@@ -205,7 +156,7 @@ class Chatroom extends React.Component {
           </div>
             <form id='chat-form' onSubmit={this.handleSend}>
               <div className="chat-input-div">
-              <input className='chat-input' id="m" placeholder={`Message ${"r/Chatroom"}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+              <input className='chat-input' id="m" placeholder={`Message ${"r/" + this.props.subredditId}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
                 <button className="chat-submit">Send</button>
               </div>
             </form>

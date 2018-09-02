@@ -27,7 +27,7 @@ class ChatIndex extends React.Component {
         <ul>
           <li> <Link to="/chat/1">ChatID1</Link> </li>
           <li> <Link to="/chat/2">ChatID2</Link> </li>
-          <li></li>
+          <li> <Link to="/chat/appacademy">/r/appacademy</Link> </li>
         </ul>
 
       </div>
