@@ -13,17 +13,16 @@ const formType = (location) => {
 
 
 const navType = (location) => {
-  // if (formType(location) === 'signup') {
-  //   return (
-  //     <div>Already have an account? <Link to="/login">Sign In</Link></div>
-  //   );
-  // }
-  // return (
-  //   <div>Don't have an account? <Link to="/signup">Sign Up</Link></div>
-  // );
+  if (formType(location) === 'signup') {
+    return (
+      <div>Already have an account? <Link to="/login">Sign In</Link></div>
+    );
+  }
   return (
-    <div>Don't have a Reddit account? <a href="https://www.reddit.com/register">Sign Up</a></div>
+    <div>Don't have an account? <Link to="/signup">Sign Up</Link></div>
+  
   );
+ 
 };
 
 const mapStateToProps = ({ errors }, { location }) => {

@@ -10,9 +10,9 @@ const Greeting = ({ currentUser, logout }) => {
     </nav>
   );
   const personalGreeting = ({ email }) => (
-    <hgroup className="header-group">
-      <h2 className="header-name">Hi, {email}!</h2>
-      <button className="header-button" onClick={() => logout()}>Log Out</button>
+    <hgroup className="greeting-main">
+      <h2 className="greeting-email">{email}</h2>
+      <button className="greeting-button" onClick={() => logout()}>Log Out</button>
     </hgroup>
   );
 

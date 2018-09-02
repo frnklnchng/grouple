@@ -116,8 +116,10 @@ class Chatroom extends React.Component {
     // debugger
     return (
       <div className="chat-component">
-        <GreetingContainer /> 
-        <h1 className="chat-name">r/Chatroom</h1>
+        <div className="greeting-header">
+          <h1 className="chat-name">r/Chatroom</h1>
+          <GreetingContainer /> 
+        </div>
         <div className='chatroom' id='chatroom'>
           <ul id="messages">
           { this.renderPrevMsgs() }

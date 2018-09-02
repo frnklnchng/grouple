@@ -63,17 +63,13 @@ class SessionForm extends React.Component {
   render() {
     const extendedForm = () => {
       return (
-        <div className="login-form-container">
-          <br />
+        <div>
           <input className="login-password"
               type="password"
-              placeholder="Password2"
+              placeholder="Confirm Password"
               value={this.state.password2}
               onChange={this.update('password2')}
             />
-
- 
-
         </div>
       );
     };
@@ -104,6 +100,7 @@ class SessionForm extends React.Component {
             {this.renderErrors()}
             <button className="submit-bttn" onClick={this.handleSubmit}>{bttntype}</button>
             <div className="session-form-ending-tag">{this.props.navLink}</div>
+            <div className="session-form-ending-tag">Sync your reddit account <br/> Coming Soon!</div>
           </div>
         </form>
       </div>
