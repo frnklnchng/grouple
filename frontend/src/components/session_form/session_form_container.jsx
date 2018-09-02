@@ -10,19 +10,19 @@ const formType = (location) => {
   return type;
 };
 
-const navType = (location) => {
-  // if (formType(location) === 'signup') {
-  //   return (
-  //     <div>Already have an account? <Link to="/login">Sign In</Link></div>
-  //   );
-  // }
 
-  // return (
-  //   <div>Don't have an account? <Link to="/signup">Sign Up</Link></div>
-  // );
+
+const navType = (location) => {
+  if (formType(location) === 'signup') {
+    return (
+      <div>Already have an account? <Link to="/login">Sign In</Link></div>
+    );
+  }
   return (
-    <div>Don't have a Reddit account? <a href="https://www.reddit.com/register">Sign Up</a></div>
+    <div>Don't have an account? <Link to="/signup">Sign Up</Link></div>
+  
   );
+ 
 };
 
 const mapStateToProps = ({ errors }, { location }) => {
@@ -34,10 +34,13 @@ const mapStateToProps = ({ errors }, { location }) => {
 };
 
 const mapDispatchToProps = (dispatch, { location }) => {
-  const processForm = formType(location) === 'signup' ? signup : login;
+  const processForm = formType(location) === 'signup' ? signup : login;  
 
   return {
+    
     processForm: (user) => dispatch(processForm(user)),
+    
+     
     // demo: (user) => dispatch(login(user))
   };
 };
