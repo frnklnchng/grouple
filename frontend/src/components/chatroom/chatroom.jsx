@@ -26,9 +26,9 @@ class Chatroom extends React.Component {
     // debugger
   }
 
-  createSortedMsgs(){
+  createSortedMsgs(nextPropsMsgs){
     let sortedMsgs = {};
-    this.props.msgs.forEach((msg) => {
+    nextPropsMsgs.forEach((msg) => {
       if(!sortedMsgs[msg.subredditId]){
         sortedMsgs[msg.subredditId] = [];
       }
@@ -64,39 +64,41 @@ class Chatroom extends React.Component {
     // this.setState({
     //   msgs: nextProps.msgs
     // })
-    let sorted = this.createSortedMsgs();
-    debugger
-    if(!this.state.msgs.length){
-      let chatMsgs = []
-      nextProps.msgs.forEach((msg) => {
-        if (msg.subredditId === nextProps.subredditId) {
-          chatMsgs.push(msg);
-        }
-      })
-      this.setState({
-        msgs: chatMsgs,
-      });
-    }
+    let sorted = this.createSortedMsgs(nextProps.msgs);
+    this.setState({
+      msgs: sorted,
+    })
+    // if(!this.state.msgs.length){
+    //   let chatMsgs = []
+    //   nextProps.msgs.forEach((msg) => {
+    //     if (msg.subredditId === nextProps.subredditId) {
+    //       chatMsgs.push(msg);
+    //     }
+    //   })
+    //   this.setState({
+    //     msgs: chatMsgs,
+    //   });
+    // }
 
-    else {
-      if (nextProps.subredditId != this.props.subredditId) {
-        console.log('yo we needa switch');
-        let that = this;
-        let chatMsgs = [];
-        // debugger
-        nextProps.msgs.forEach((msg) => {
-          if (msg.subredditId === nextProps.subredditId) {
-            chatMsgs.push(msg);
-          }
-        });
-        this.setState({
-          msgs: chatMsgs,
-          subredditId: nextProps.subredditId,
-        });
+    // else {
+    //   if (nextProps.subredditId != this.props.subredditId) {
+    //     console.log('yo we needa switch');
+    //     let that = this;
+    //     let chatMsgs = [];
+    //     // debugger
+    //     nextProps.msgs.forEach((msg) => {
+    //       if (msg.subredditId === nextProps.subredditId) {
+    //         chatMsgs.push(msg);
+    //       }
+    //     });
+    //     this.setState({
+    //       msgs: chatMsgs,
+    //       subredditId: nextProps.subredditId,
+    //     });
 
-        // debugger
-      }
-    }
+    //     // debugger
+    //   }
+    // }
   }
 
   
@@ -135,8 +137,10 @@ class Chatroom extends React.Component {
     const that = this;
     //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
-      let msgs = Array.from(that.state.msgs)
-      msgs.push(msg);
+      let msgs = Object.assign({}, that.state.msgs)
+      debugger
+      msgs[that.props.subredditId].push(msg);
+      
       that.setState({
         msgs: msgs, 
       });
@@ -150,7 +154,11 @@ class Chatroom extends React.Component {
     // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
     // let messages = Object.values(this.props.msgs);
     // debugger
-    let messages = Array.from(this.state.msgs)
+    if(!Object.values(this.state.msgs).length || !this.props.subredditId){
+      return (<div> no msgs </div>)
+    }
+    let subredditId = this.props.subredditId;
+    let messages = Array.from(this.state.msgs[subredditId])
     // console.log(messages);
     if(!messages.length){
       return;
