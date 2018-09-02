@@ -26,9 +26,18 @@ class Chatroom extends React.Component {
   componentDidUpdate = (prevProps, prevState) => {
     if(prevProps.subredditId != this.props.subredditId){
       console.log('yo we needa switch');
+      let that = this;
+      let chatMsgs = []
+      this.state.msgs.forEach((msg) => {
+        if(msg.subredditId === that.props.subredditId){
+          chatMsgs.push(msg);
+        } 
+      });
       this.setState({
-        msgs: [],
-      })
+        msgs: chatMsgs,
+        subredditId: this.props.subredditId,
+      });
+      debugger
     }
   }
   
@@ -53,7 +62,7 @@ class Chatroom extends React.Component {
   handleSend(e){
     e.preventDefault();
     //send to db
-    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1, date: Date()})
+    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: this.props.subredditId, date: Date()})
       // .then();
     // debugger
     //set on local state
@@ -95,6 +104,7 @@ class Chatroom extends React.Component {
     }
     let result = [];
     let prevId = null;
+    debugger
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
         result.push(
