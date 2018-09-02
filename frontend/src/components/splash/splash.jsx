@@ -2,13 +2,11 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import { Link } from 'react-router-dom';
 import SessionFormContainer from '../session_form/session_form_container';
-// import { receiveErrors } from '../../actions/session_actions';
 
 class Splash extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
-
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -21,8 +19,7 @@ class Splash extends React.Component {
     this.closeModal();
   }
 
-  openModal(formType) {
-    // this.props.clearErrors();
+  openModal() {
     return () => {
       this.setState({ showModal: true });
     };

@@ -26,7 +26,6 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     this.props.processForm(user);
-    this.props.closeModal();
   }
 
   renderErrors() {
@@ -43,7 +42,12 @@ class SessionForm extends React.Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  closeModal() {
+    this.props.closeModal();
+  }
+
   render() {
+    if (localStorage.jwtToken) this.closeModal();
     // const extendedForm = () => {
     //   return (
     //     <div className="login-form-container">

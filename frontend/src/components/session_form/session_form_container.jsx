@@ -5,7 +5,6 @@ import { signup, login } from '../../util/session_api_util';
 
 const formType = (location) => {
   let type = location.pathname.slice(1) === 'signup' ? 'signup' : 'login';
-
   return type;
 };
 
