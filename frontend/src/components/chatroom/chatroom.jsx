@@ -1,14 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
-
+import ChatIndex from './chatroom_index';
 
 class Chatroom extends React.Component {
   constructor(props){
     super(props);
     this.socket = io.connect();
-
     this.state = {
+      subredditId: this.props.match.params.id,
       message: "",
       msgs: Array.from(this.props.msgs),
     };
@@ -21,8 +21,17 @@ class Chatroom extends React.Component {
     const that = this;
     this.props.fetchAllMessages();
     this.setState({msgs: this.props.msgs})
-    
   }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevProps.subredditId != this.props.subredditId){
+      console.log('yo we needa switch');
+      this.setState({
+        msgs: [],
+      })
+    }
+  }
+  
   
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -35,6 +44,7 @@ class Chatroom extends React.Component {
   
 
   update(field) {
+    console.log(this.props.match.params)
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -112,19 +122,24 @@ class Chatroom extends React.Component {
   render() {
     // debugger
     return (
-      <div className="chat-component">
-        <h1 className="chat-name">r/Chatroom</h1>
-        <div className='chatroom' id='chatroom'>
-          <ul id="messages">
-          { this.renderPrevMsgs() }
-          </ul>
+      <div>
+        <div className ='chat-index'>
+          <ChatIndex />
         </div>
-          <form id='chat-form' onSubmit={this.handleSend}>
-            <div className="chat-input-div">
-            <input className='chat-input' id="m" placeholder={`Message ${"r/Chatroom"}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
-              <button className="chat-submit">Send</button>
-            </div>
-          </form>
+        <div className="chat-component">
+          <h1 className="chat-name">r/Chatroom</h1>
+          <div className='chatroom' id='chatroom'>
+            <ul id="messages">
+            { this.renderPrevMsgs() }
+            </ul>
+          </div>
+            <form id='chat-form' onSubmit={this.handleSend}>
+              <div className="chat-input-div">
+              <input className='chat-input' id="m" placeholder={`Message ${"r/Chatroom"}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+                <button className="chat-submit">Send</button>
+              </div>
+            </form>
+        </div>
       </div>
     )
   }

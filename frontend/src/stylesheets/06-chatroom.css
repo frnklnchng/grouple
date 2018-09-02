@@ -79,3 +79,7 @@
   color: #c0c0c0;
   transition: 0.6s ease;
 }
+
+.chat-index {
+  position: absolute;
+}
