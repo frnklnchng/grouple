@@ -23,30 +23,62 @@ class Chatroom extends React.Component {
     this.setState({msgs: this.props.msgs})
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
-    if(prevProps.subredditId != this.props.subredditId){
-      console.log('yo we needa switch');
-      let that = this;
-      let chatMsgs = []
-      this.state.msgs.forEach((msg) => {
-        if(msg.subredditId === that.props.subredditId){
-          chatMsgs.push(msg);
-        } 
-      });
-      this.setState({
-        msgs: chatMsgs,
-        subredditId: this.props.subredditId,
-      });
-      debugger
-    }
-  }
-  
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   if(prevProps.subredditId != this.props.subredditId){
+  //     console.log('yo we needa switch');
+  //     let that = this;
+  //     let chatMsgs = []
+  //     this.state.msgs.forEach((msg) => {
+  //       if(msg.subredditId === that.props.subredditId){
+  //         chatMsgs.push(msg);
+  //       } 
+  //     });
+  //     this.setState({
+  //       msgs: chatMsgs,
+  //       subredditId: this.props.subredditId,
+  //     });
+  //     // debugger
+  //   }
+  // }
+
+  // onlyCurSubMsgs(){
+
+  // }
   
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      msgs: nextProps.msgs
-    })
+    // this.setState({
+    //   msgs: nextProps.msgs
+    // })
     // debugger
+    if(!this.state.msgs.length){
+      let chatMsgs = []
+      nextProps.msgs.forEach((msg) => {
+        if (msg.subredditId === nextProps.subredditId) {
+          chatMsgs.push(msg);
+        }
+      })
+      this.setState({
+        msgs: chatMsgs,
+      });
+    }
+    else {
+      if (nextProps.subredditId != this.props.subredditId) {
+        console.log('yo we needa switch');
+        let that = this;
+        let chatMsgs = [];
+        debugger
+        nextProps.msgs.forEach((msg) => {
+          if (msg.subredditId === nextProps.subredditId) {
+            chatMsgs.push(msg);
+          }
+        });
+        this.setState({
+          msgs: chatMsgs,
+          subredditId: nextProps.subredditId,
+        });
+        // debugger
+      }
+    }
   }
 
   
@@ -97,6 +129,7 @@ class Chatroom extends React.Component {
   renderPrevMsgs() {
     // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
     // let messages = Object.values(this.props.msgs);
+    // debugger
     let messages = Array.from(this.state.msgs)
     // console.log(messages);
     if(!messages.length){
@@ -104,7 +137,6 @@ class Chatroom extends React.Component {
     }
     let result = [];
     let prevId = null;
-    debugger
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
         result.push(
