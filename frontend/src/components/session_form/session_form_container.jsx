@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { signup, login } from '../../util/session_api_util';
 import { connect } from 'react-redux';
-import SessionForm from './session_form'; 
+import { Link } from 'react-router-dom';
+import SessionForm from './session_form';
+import { signup, login } from '../../util/session_api_util';
 
 const formType = (location) => {
   let type = location.pathname.slice(1) === 'signup' ? 'signup' : 'login';
-
   return type;
 };
 
