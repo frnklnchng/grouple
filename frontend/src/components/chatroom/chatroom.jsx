@@ -48,10 +48,7 @@ class Chatroom extends React.Component {
         msgs: sorted,
       })
     }
-    if((this.props.vistedChats === undefined)){
-      this.props.patchChats({id: this.props.userId, visitedChats: []});
-    }
-    if(!(this.props.vistedChats === undefined)){
+
       if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
         let updatedVisted = Array.from(this.props.visitedChats);
         updatedVisted.push(nextProps.subredditId);
@@ -59,7 +56,6 @@ class Chatroom extends React.Component {
         this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
       }
 
-    }
   }
 
   update(field) {

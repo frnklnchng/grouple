@@ -11,23 +11,16 @@ class ChatIndex extends React.Component {
     // debugger
   } 
 
-
-  componentDidMount(){
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-    
-  }
-
-
   render() {
     const renderVisited = () => { 
       if(!this.props.visitedChats){
         return <li>No Visited</li>
       }
       return this.props.visitedChats.map((chat, index) => (
-        <li className='chat-link' key={`chatroom-${index}`}> <Link to={`/chat/${chat}`}>{`/r/${chat}`}</Link> <label className='hidden clickable remove'>x</label></li>
+        <li className='chat-link' key={`chatroom-${index}`}>
+          <Link className='a-link' to={`/chat/${chat}`}>{`/r/${chat}`}</Link> 
+          <label onClick='' className='hidden clickable remove'>x</label>
+        </li>
         ) 
       )
     }
