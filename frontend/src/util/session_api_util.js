@@ -68,20 +68,18 @@ export const login = userData => dispatch => {
 };
 
 export const patchChats = visitedChats => dispatch => {
-  return (
-    axios
-      .patch('/api/users/update_chats', visitedChats)
-      .then(res => {
-        // debugger
-        dispatch(updateVisitedChats(visitedChats))
+  axios
+    .patch('/api/users/update_chats', {visitedChats: visitedChats})
+    .then(res => {
+      debugger
+      dispatch(updateVisitedChats(visitedChats))
+    })
+    .catch(err => 
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       })
-      .catch(err => 
-        dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-        })
-      )
-  );
+    )
   
 }
 
