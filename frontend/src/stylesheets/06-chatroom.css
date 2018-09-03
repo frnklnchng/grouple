@@ -116,15 +116,3 @@
   color: #c0c0c0;
   transition: 0.6s ease;
 }
-
-.chat-right {
-  display: flex;
-}
-
-.chat-date {
-  color: red;
-}
-
-.chat-time {
-  color: green;
-}
