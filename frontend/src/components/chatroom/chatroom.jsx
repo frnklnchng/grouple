@@ -47,11 +47,11 @@ class Chatroom extends React.Component {
         msgs: sorted,
       })
     }
-    // debugger
+
     if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
       let updatedVisted = Array.from(this.props.visitedChats);
       updatedVisted.push(nextProps.subredditId);
-      // debugger
+
       this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
     }
   }
@@ -69,11 +69,9 @@ class Chatroom extends React.Component {
     e.preventDefault();
     //send to db
     this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: this.props.subredditId, date: Date()})
-      // .then();
-    // debugger
     //set on local state
     //emit message with msg
-    // debugger
+
     //set current user name to be the message
     
     this.socket.emit('chat message', {text: this.state.message, userId: this.props.currentUser});
@@ -127,7 +125,7 @@ class Chatroom extends React.Component {
     for(let i = 0; i < messages.length; i++){
       if(prevId != messages[i].userId){
         result.push(
-        <li className='chat-user'>
+        <li className='chat-user' key={`user-${prevId}-${i}`}>
           {/* <img className='chat-user-avatar' src="https://png.icons8.com/material/96/000000/user-male-circle.png"></img> */}
           <img className='chat-user-avatar' src="https://cdn1.iconfinder.com/data/icons/somacro___dpi_social_media_icons_by_vervex-dfjq/500/reddit.png"></img>
           <div className='chat-user-name'>{messages[i].userId}</div>
@@ -135,7 +133,7 @@ class Chatroom extends React.Component {
         prevId = messages[i].userId;
       }
 
-      result.push(<li className='chat-msg'>{messages[i].text}</li>);
+      result.push(<li className='chat-msg' key={`message-${i}`}>{messages[i].text}</li>);
     }
     return result;
   }
@@ -151,7 +149,7 @@ class Chatroom extends React.Component {
   render() {
     // debugger
     return (
-      <div>
+      <div key='component'>
         <div className ='chat-index'>
           <ChatIndexContainer />
         </div>
