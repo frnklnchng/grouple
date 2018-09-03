@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     msgs: Object.values(state.entities.msgs),
     currentUser: state.session.email,
     currentUserId: state.session.id,
-    visitedChats: state.session.visitedChats || []
+    visitedChats: state.session.visitedChats
   }
 };
 
