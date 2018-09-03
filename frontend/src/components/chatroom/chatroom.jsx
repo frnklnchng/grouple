@@ -1,11 +1,11 @@
 import React from 'react';
-// import io from "socket.io-client";
+import io from "socket.io-client";
 import GreetingContainer from '../greeting/greeting_container';
 
 class Chatroom extends React.Component {
   constructor(props){
     super(props);
-    this.socket = window.io.connect();
+    this.socket = io.connect();
     // this.socket = io.connect('http://localhost:3000');
 
     this.state = {
