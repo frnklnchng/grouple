@@ -5,6 +5,7 @@ const $ = window.$;
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const SET_CURRENT_VISITED_CHATS = 'SET_CURRENT_VISITED_CHATS';
 
 
 
@@ -66,18 +67,20 @@ export const login = userData => dispatch => {
     );
 };
 
-export const update = userData => dispatch => {
-  axios
-    .patch('/api/users/update_chats', userData)
-    .then(res => {
-      dispatch(updateVistedChats(res))
-    })
-    .catch(err => 
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
+export const patchChats = userData => dispatch => {
+  return (
+    axios
+      .patch('/api/users/update_chats', userData)
+      .then(res => {
+        dispatch(updateVisitedChats(res))
       })
-    );
+      .catch(err => 
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      )
+  );
   
 }
 
