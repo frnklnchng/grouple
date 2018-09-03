@@ -5,7 +5,7 @@ import GreetingContainer from '../greeting/greeting_container';
 class Chatroom extends React.Component {
   constructor(props){
     super(props);
-    this.socket = io.connect(process.env.clientURL + 'chat');
+    this.socket = io.connect(process.env.clientURL + '#/chat');
     // this.socket = io.connect('http://localhost:3000');
 
     this.state = {
