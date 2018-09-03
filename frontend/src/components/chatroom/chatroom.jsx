@@ -8,7 +8,7 @@ import Greeting from '../greeting/greeting';
 class Chatroom extends React.Component {
   constructor(props){
     super(props);
-    this.socket = io.connect();
+    this.socket = io.connect(process.env.clientURL || 'http://localhost:3000');
 
     this.state = {
       message: "",
