@@ -3,12 +3,18 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jsonwebtoken = require('jsonwebtoken');
 
-const keys = require('../../config/keys');
 const User = require('../../models/User');
 const validateLoginInput = require('../../validation/login');
 const validateSignupInput = require('../../validation/signup');
 
 const router = express.Router();
+
+let keys;
+if (process.env.productionMode === 'on') {
+  keys = { secretOrKey: process.env.secretOrKey }
+} else {
+  keys = require('../../config/keys');
+}
 
 function userParams(formUser) {
   return {
@@ -57,12 +63,15 @@ router.post("/signup", (req, res) => {
             .then(user => {
               const payload = { id: user.id, name: user.email };
 
-              jsonwebtoken.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+            
                 res.json({
                   success: true,
                   token: "Bearer " + token
                 });
               });
+
+              jsonwebtoken.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+
             })
             .catch(err => console.log(err));
         });
@@ -92,12 +101,15 @@ router.post('/login', (request, response) => {
         const payload = { id: user.id, name: user.email };
         jsonwebtoken.sign(
           payload,
-          keys.secretOrKey,
+        
           { expiresIn: 3600 },
           (_, token) => {
             response.json({
               success: true,
               token: `Bearer ${token}`
+
+              keys.secretOrKey,
+
             });
           });
       } else {
