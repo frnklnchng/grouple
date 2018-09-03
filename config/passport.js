@@ -4,11 +4,8 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../models/User');
 
 let keys;
-if (process.env.productionMode === 'on') {
-  keys = { secretOrKey: process.env.secretOrKey }
-} else {
-  keys = require('../../config/keys');
-}
+keys = { secretOrKey: process.env.secretOrKey };
+// keys = require('../../config/keys');
 
 const options = {};
 options.secretOrKey = keys.secretOrKey;

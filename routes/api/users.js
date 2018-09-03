@@ -10,11 +10,8 @@ const validateSignupInput = require('../../validation/signup');
 const router = express.Router();
 
 let keys;
-if (process.env.productionMode === 'on') {
-  keys = { secretOrKey: process.env.secretOrKey }
-} else {
-  keys = require('../../config/keys');
-}
+keys = { secretOrKey: process.env.secretOrKey }
+// keys = require('../../config/keys');
 
 function userParams(formUser) {
   return {
