@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
-import ChatIndex from './chatroom_index';
+import ChatIndexContainer from './chatroom_index_container';
 
 class Chatroom extends React.Component {
   constructor(props){
@@ -153,7 +153,7 @@ class Chatroom extends React.Component {
     return (
       <div>
         <div className ='chat-index'>
-          <ChatIndex />
+          <ChatIndexContainer />
         </div>
         <div className="chat-component">
           <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
