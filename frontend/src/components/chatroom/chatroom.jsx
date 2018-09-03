@@ -48,7 +48,7 @@ class Chatroom extends React.Component {
       })
     }
     // debugger
-    if(!this.props.visitedChats.includes(nextProps.subredditId)){
+    if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
       let updatedVisted = Array.from(this.props.visitedChats);
       updatedVisted.push(nextProps.subredditId);
       // debugger
