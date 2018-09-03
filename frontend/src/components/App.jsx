@@ -10,7 +10,7 @@ const App = () => (
     <Switch>
       <ProtectedRoute path="/chat" component={ChatroomContainer}/>
       <ProtectedRoute path="/home" component={GreetingContainer} />
-      <Route path="/" component={SplashContainer} />
+      <AuthRoute path="/" component={SplashContainer} />
     </Switch>
   </div>
 );
