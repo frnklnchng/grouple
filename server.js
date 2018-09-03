@@ -24,12 +24,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/messages', messages);
+app.use(express.static('frontend'));
 
 http.listen(process.env.PORT || 5000);
 
-io.on('connection', function (socket) {
+io.on('connection', function(socket) {
   socket.broadcast.emit('welcome');
-  socket.on('chat message', function (msg) {
-    io.emit('chat message', msg);
+  socket.on('chat message', function(message) {
+    io.emit('chat message', message);
   });
+});
+
+app.get('/', (_, response) => {
+  response.sendFile(__dirname + '/index.html');
 });
