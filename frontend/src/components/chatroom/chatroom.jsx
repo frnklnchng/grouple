@@ -148,7 +148,7 @@ class Chatroom extends React.Component {
       <div className="chat-component">
         <div className="greeting-header">
           <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
-          {/* <GreetingContainer />  */}
+          <GreetingContainer /> 
         </div>
       <div className='chatroom' id='chatroom'>
           <ul id="messages">{ this.renderPrevMsgs() }</ul>
