@@ -2,6 +2,7 @@ import React from 'react';
 import io from "socket.io-client";
 import MessageItem from './message_item';
 import MessageItemSame from './message_item_same';
+import GreetingContainer from '../greeting/greeting_container';
 
 class Chatroom extends React.Component {
   constructor(props){
@@ -76,8 +77,10 @@ class Chatroom extends React.Component {
     // debugger
     return (
       <div className="chat-component">
-        <h1 className="chat-name">r/Chatroom</h1>
-
+        <div className="greeting-header">
+          <h1 className="chat-name">r/Chatroom</h1>
+          <GreetingContainer /> 
+        </div>
         <div className='chatroom' id='chatroom'>
           <ul id="messages">{ this.renderPrevMsgs() }</ul>
         </div>

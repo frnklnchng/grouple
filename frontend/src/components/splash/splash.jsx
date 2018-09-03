@@ -2,6 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import { Link } from 'react-router-dom';
 import SessionFormContainer from '../session_form/session_form_container';
+import SignUpFormContainer from '../session_form/signup_form_container';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Splash extends React.Component {
 
   openModal() {
     return () => {
+        
       this.setState({ showModal: true });
     };
   }
@@ -40,7 +42,12 @@ class Splash extends React.Component {
         <button className="splash-quote-signup" onClick={this.openModal('login')}>Log In</button>
       </div>
     );
-    let whichButton = <button className="splash-login" onClick={this.openModal('login')}>Log In</button>;
+    let whichButton = (
+      <div className="splash-auth">
+        <button className="splash-login" onClick={this.openModal('login')}>Log In</button>
+        <button className="splash-login" onClick={this.openModal('signup')}>Sign Up</button>
+      </div>
+    );
 
     if (this.props.currentUser) {
       whichOne = <input className="searchbar" placeholder="Search for a subreddit" />;
@@ -53,7 +60,7 @@ class Splash extends React.Component {
           <Link to="/">
             <h2 className="splash-logo"><span role="img" aria-label="staff">💬</span> Grouple</h2>
           </Link>
-          <div className="splash-auth">{ whichButton }</div>
+          { whichButton }
         </div>
 
         <ReactModal className="auth-modal"
