@@ -81,7 +81,8 @@ router.post('/login', (request, response) => {
           (_, token) => {
             response.json({
               success: true,
-              token: `Bearer ${token}`
+              token: `Bearer ${token}`,
+              visitedChats: user.visitedChats,
             });
           });
       } else {
@@ -92,26 +93,19 @@ router.post('/login', (request, response) => {
   });
 });
 
-router.post('/update_chats', (request, response) => {
+router.patch('/update_chats', (request, response) => {
+  console.log(request.body);
   const visitedChats = request.body.visitedChats;
   const email = request.body.email;
   const id = request.body.id;
-  // User.findOne({ email }).then(user => {
-  //   if(user) {
-  //     db.users.update(
-  //       { _id: id },
-  //       { $set: { visitedChats: visitedChats } }
-  //     )
-  //   }
-  // });
-  //  response.json({
-  //    msg: 'we did something?'
-  //  });
 
-  db.users.update(
+  User.update(
     { _id: id },
     { $set: { visitedChats: visitedChats }}
-    );
+    ).exec();
+
+
+  
 });
 
 
