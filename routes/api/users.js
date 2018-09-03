@@ -81,7 +81,8 @@ router.post('/login', (request, response) => {
           (_, token) => {
             response.json({
               success: true,
-              token: `Bearer ${token}`
+              token: `Bearer ${token}`,
+              visitedChats: user.visitedChats,
             });
           });
       } else {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Chatroom from './chatroom';
 import { fetchAllMessages, postMessage } from '../../util/message_util';
-import { updateVisitedChats } from '../../util/session_api_util';
+import { patchChats } from '../../util/session_api_util';
 //import respective chatroom api utils
 
 const mapStateToProps = (state, ownProps) => {
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchAllMessages: () => dispatch(fetchAllMessages()),
     postMessage: (message) => dispatch(postMessage(message)),
-    updateVisitedChats: (visitedChats) => dispatch(updateVisitedChats(visitedChats)),
+    patchChats: (visitedChats) => dispatch(patchChats(visitedChats)),
   }
 };
 

@@ -72,7 +72,8 @@ export const patchChats = userData => dispatch => {
     axios
       .patch('/api/users/update_chats', userData)
       .then(res => {
-        dispatch(updateVisitedChats(res))
+        debugger
+        dispatch(updateVisitedChats(userData))
       })
       .catch(err => 
         dispatch({
@@ -105,7 +106,7 @@ export const logout = () => dispatch => {
 export const updateVisitedChats = (visitedChats) => {
   return {
     type: SET_CURRENT_VISITED_CHATS,
-    payload: visitedChats
+    visitedChats: visitedChats
   }
 
 }
