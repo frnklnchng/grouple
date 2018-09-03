@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/messages', messages);
-app.use(express.static('frontend'));
+app.use(express.static('frontend/build'));
 
 http.listen(process.env.PORT || 5000);
 
@@ -35,6 +36,6 @@ io.on('connection', function(socket) {
   });
 });
 
-app.get('/', (_, response) => {
-  response.sendFile(__dirname + '/index.html');
+app.get('*', (_, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
