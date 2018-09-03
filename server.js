@@ -4,6 +4,8 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const passportSetup =  require('./config/passport');
 
+const path = require('path');
+
 const users = require('./routes/api/users');
 const chats = require('./routes/api/chats');
 const messages = require('./routes/api/messages');
@@ -26,6 +28,13 @@ app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/messages', messages);
 app.use(express.static('./'));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 http.listen(port, () => {
   console.log(`Server is running on port ${port}`);
