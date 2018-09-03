@@ -1,9 +1,6 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
-import axios from 'axios';
 import GreetingContainer from '../greeting/greeting_container';
-import Greeting from '../greeting/greeting';
 
 class Chatroom extends React.Component {
   constructor(props){
@@ -20,21 +17,15 @@ class Chatroom extends React.Component {
   }
   
   componentDidMount() {
-    const that = this;
     this.props.fetchAllMessages();
-    this.setState({msgs: this.props.msgs})
-    
+    this.setState({msgs: this.props.msgs});
   }
   
   componentWillReceiveProps(nextProps) {
     this.setState({
       msgs: nextProps.msgs
     });
-    // debugger
   }
-
-  
-  
 
   update(field) {
     return e => this.setState({
@@ -44,17 +35,8 @@ class Chatroom extends React.Component {
 
   handleSend(e){
     e.preventDefault();
-    //send to db
-    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1})
-      // .then();
-    // debugger
-    //set on local state
-    //emit message with msg
-
-    //set current user name to be the message
-    
+    this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1});
     this.socket.emit('chat message', {text: this.state.message, userId: this.props.currentUser});
-    // this.socket.emit('chat message', {message: this.state.message, username: this.props.currentUser});
     this.setState({
       message: ""
     });
@@ -63,23 +45,16 @@ class Chatroom extends React.Component {
   
   chatOnEmit(){
     this.scrollToBottom(); 
-
-    //set onto local state
     const that = this;
-    //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
       let msgs = Array.from(that.state.msgs);
       msgs.push(msg);
       that.setState({msgs: msgs});
       this.scrollToBottom();
-
     });
-    
   }
 
   renderPrevMsgs() {
-    // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
-    // let messages = Object.values(this.props.msgs);
     let messages = Array.from(this.state.msgs);
     if(!messages.length){
       return;
@@ -87,18 +62,14 @@ class Chatroom extends React.Component {
     let result = [];
     let prevId = '';
     for(let i = 0; i < messages.length; i++){
-      if(prevId != messages[i].userId){
-         
+      if(prevId !== messages[i].userId){
         result.push(
-      
         <li className='chat-user' key={i}>
-          {/* <img className='chat-user-avatar' src="https://png.icons8.com/material/96/000000/user-male-circle.png"></img> */}
           <img className='chat-user-avatar' src="https://cdn1.iconfinder.com/data/icons/somacro___dpi_social_media_icons_by_vervex-dfjq/500/reddit.png"></img>
           <div className='chat-user-name'>{messages[i].userId}</div>
         </li>);
         prevId = messages[i].userId;
       }
-
       result.push(<li className='chat-msg' key={messages[i]._id} >{messages[i].text}</li>);
     }
     return result;
@@ -110,10 +81,8 @@ class Chatroom extends React.Component {
       scrollDiv.scrollTop = scrollDiv.scrollHeight; 
     }
   }
-
   
   render() {
-    // debugger
     return (
       <div className="chat-component">
         <div className="greeting-header">
@@ -132,7 +101,7 @@ class Chatroom extends React.Component {
             </div>
           </form>
       </div>
-    )
+    );
   }
 }
 

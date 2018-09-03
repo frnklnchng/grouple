@@ -5,14 +5,9 @@ const bodyParser = require('body-parser');
 const passportSetup =  require('./config/passport');
 
 const users = require('./routes/api/users');
-const chats = require('./routes/api/chats');
 const messages = require('./routes/api/messages');
-
-let database;
-database = process.env.mongoURI;
-// database = require('./config/keys').mongoURI;
-
-const port = process.env.PORT || 5000;
+const database = process.env.mongoURI;
+// const database = require('./config/keys').mongoURI;
 passportSetup(passport);
 
 mongoose
@@ -30,9 +25,7 @@ app.use(passport.initialize());
 app.use('/api/users', users);
 app.use('/api/messages', messages);
 
-http.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+http.listen(process.env.PORT || 5000);
 
 io.on('connection', function (socket) {
   socket.broadcast.emit('welcome');
