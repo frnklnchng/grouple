@@ -1,9 +1,12 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
+const $ = window.$;
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+
+
 
 export const setAuthToken = token => {
   if (token) {
@@ -75,7 +78,7 @@ export const setCurrentUser = decoded => {
 };
 
 // Log user out
-export const logout = () => (dispatch) => {
+export const logout = () => dispatch => {
   // Remove token from localStorage
   localStorage.removeItem('jwtToken');
   // Remove auth header for future requests
