@@ -1,11 +1,11 @@
 import React from 'react';
-import io from "socket.io-client";
+// import io from "socket.io-client";
 import GreetingContainer from '../greeting/greeting_container';
 
 class Chatroom extends React.Component {
   constructor(props){
     super(props);
-    this.socket = io.connect(process.env.clientURL + '#/chat');
+    this.socket = window.io.connect();
     // this.socket = io.connect('http://localhost:3000');
 
     this.state = {
@@ -34,17 +34,15 @@ class Chatroom extends React.Component {
     });
   }
 
-  handleSend(e){
+  handleSend(e) {
     e.preventDefault();
     this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: 1});
     this.socket.emit('chat message', {text: this.state.message, userId: this.props.currentUser});
-    this.setState({
-      message: ""
-    });
+    this.setState({ message: '' });
     return false;
   }
   
-  chatOnEmit(){
+  chatOnEmit() {
     this.scrollToBottom(); 
     const that = this;
     this.socket.on('chat message', (msg) => {
@@ -57,13 +55,11 @@ class Chatroom extends React.Component {
 
   renderPrevMsgs() {
     let messages = Array.from(this.state.msgs);
-    if(!messages.length){
-      return;
-    }
+    if (!messages.length) return;
     let result = [];
     let prevId = '';
-    for(let i = 0; i < messages.length; i++){
-      if(prevId !== messages[i].userId){
+    for (let i = 0; i < messages.length; i++) {
+      if (prevId !== messages[i].userId) {
         result.push(
         <li className='chat-user' key={i}>
           <img className='chat-user-avatar' src="https://cdn1.iconfinder.com/data/icons/somacro___dpi_social_media_icons_by_vervex-dfjq/500/reddit.png"></img>
@@ -76,11 +72,9 @@ class Chatroom extends React.Component {
     return result;
   }
 
-  scrollToBottom(){
+  scrollToBottom() {
     let scrollDiv = document.getElementById("chatroom");
-    if(scrollDiv){
-      scrollDiv.scrollTop = scrollDiv.scrollHeight; 
-    }
+    if (scrollDiv) scrollDiv.scrollTop = scrollDiv.scrollHeight;
   }
   
   render() {
@@ -91,9 +85,7 @@ class Chatroom extends React.Component {
           <GreetingContainer /> 
         </div>
         <div className='chatroom' id='chatroom'>
-          <ul id="messages">
-          { this.renderPrevMsgs() }
-          </ul>
+          <ul id="messages">{ this.renderPrevMsgs() }</ul>
         </div>
           <form id='chat-form' onSubmit={this.handleSend}>
             <div className="chat-input-div">
