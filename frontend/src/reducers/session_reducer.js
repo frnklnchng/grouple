@@ -19,7 +19,8 @@ const sessionReducer = (state = _nullUser, action) => {
               email: action.payload.name,
               visitedChats: action.payload.visitedChats };
     case SET_CURRENT_VISITED_CHATS:
-      return Object.assign({}, state, {visitedChats: action.visitedChats});
+    // debugger
+      return Object.assign({}, state, action.payload);
     default:
       return state; 
   }

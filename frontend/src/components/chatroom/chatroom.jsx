@@ -47,10 +47,12 @@ class Chatroom extends React.Component {
         msgs: sorted,
       })
     }
+    // debugger
     if(!this.props.visitedChats.includes(nextProps.subredditId)){
       let updatedVisted = Array.from(this.props.visitedChats);
       updatedVisted.push(nextProps.subredditId);
-      this.props.patchChats(updatedVisted);
+      // debugger
+      this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
     }
   }
 

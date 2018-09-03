@@ -100,11 +100,11 @@ router.patch('/update_chats', (request, response) => {
 
   User.update(
     { _id: id },
-    { $set: { visitedChats: visitedChats }}
+    { visitedChats: visitedChats }
     ).exec();
 
   response.json({
-    visitedChats: visitedChats,
+    visitedChats,
   })
 
   

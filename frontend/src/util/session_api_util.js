@@ -67,20 +67,22 @@ export const login = userData => dispatch => {
     );
 };
 
-export const patchChats = visitedChats => dispatch => {
-  axios
-    .patch('/api/users/update_chats', {visitedChats: visitedChats})
-    .then(res => {
-      debugger
-      dispatch(updateVisitedChats(visitedChats))
-    })
-    .catch(err => 
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
+export const patchChats = userData => dispatch => {
+  // debugger
+  return (
+    axios
+      .patch('/api/users/update_chats', userData)
+      .then(res => {
+        // debugger
+        dispatch(updateVisitedChats(res.data))
       })
-    )
-  
+      .catch(err => 
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data
+        })
+      )
+  )
 }
 
 // Set logged in user
@@ -101,10 +103,11 @@ export const logout = () => dispatch => {
   dispatch(setCurrentUser({}));
 };
 // Update visited chats
-export const updateVisitedChats = (visitedChats) => {
+export const updateVisitedChats = (payload) => {
+  // debugger
   return {
     type: SET_CURRENT_VISITED_CHATS,
-    visitedChats: visitedChats
+    payload
   }
 
 }

@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     subredditId: ownProps.match.params.id,
     msgs: Object.values(state.entities.msgs),
     currentUser: state.session.email,
+    currentUserId: state.session.id,
     visitedChats: state.session.visitedChats || []
   }
 };
