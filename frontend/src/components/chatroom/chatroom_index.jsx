@@ -23,6 +23,9 @@ class ChatIndex extends React.Component {
 
   render() {
     const renderVisited = () => { 
+      if(!this.props.visitedChats){
+        return <li>No Visited</li>
+      }
       return this.props.visitedChats.map((chat, index) => (
         <li className='chat-link' key={`chatroom-${index}`}> <Link to={`/chat/${chat}`}>{`/r/${chat}`}</Link> <label className='hidden clickable remove'>x</label></li>
         ) 

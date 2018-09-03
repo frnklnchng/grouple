@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   width: 75%;
-  height: 100vh;
+  /* height: 100vh; */
+  height:60%;
   padding: 14px 32px;
   border-left: 1px solid lightgrey;
 }
@@ -12,6 +13,8 @@
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
+  height: 600px;
+  width: 100%;
   margin-bottom: 12px;
 }
 
@@ -19,8 +22,7 @@
   color: black;
   font-size: 20px;
   font-weight: bold;
-  padding-bottom: 14px;
-  border-bottom: 1px solid lightgrey;
+  padding-top: 15px;
 }
 
 .chat-user {
@@ -109,4 +111,41 @@
 }
 .chat-link:hover + .hidden{
   display: block;
+}
+.greeting-header {
+ display: flex; 
+ justify-content: space-between;
+ margin-top: 20px;
+ padding-bottom: 30px;
+ border-bottom: 1px solid lightgrey;
+}
+
+.greeting-main {
+  display: flex;
+  /* padding-bottom: 10px; */
+}
+
+.greeting-email {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  padding-top: 10px;
+}
+
+.greeting-button {
+  font: normal 16px 'Open Sans', sans-serif;
+  font-weight: bold;
+  text-align: right;
+  margin-bottom: 20px;
+  padding: 4px 20px 30px 20px;
+  background: white;
+  border: 2px solid white;
+  color: #2c2c3e;
+  transition: 0.6s ease;
+}
+
+.greeting-button:hover {
+  color: #c0c0c0;
+  transition: 0.6s ease;
 }

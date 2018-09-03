@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jsonwebtoken = require('jsonwebtoken');
 
-const keys = require('../../config/keys');
+// const keys = require('../../config/keys');
 const User = require('../../models/User');
 const validateLoginInput = require('../../validation/login');
 const validateSignupInput = require('../../validation/signup');
@@ -33,29 +33,48 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (reques
 });
 
 // POST /api/users/signup
-router.post('/signup', (request, response) => {
-  const { errors, isValid } = validateSignupInput(request.body);
-  if (!isValid) return response.status(400).json(errors);
-
-  User.findOne({ email: request.body.email }).then(user => {
+router.post("/signup", (req, res) => {
+  
+  const { errors, isValid } = validateSignupInput(req.body);
+   
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      const errorMessage = { email: "A user has already registered with this address" };
-      return response.status(400).json(errorMessage);
-
+      errors.email = "User already exists";
+      return res.status(400).json(errors);
     } else {
-      const newUser = new User(userParams(request));
-      bcrypt.genSalt(10, (_, salt) => {
-        bcrypt.hash(newUser.password, salt, (error, hash) => {
-          if (error) throw error;
+      const newUser = new User({
+        email: req.body.email,
+        password: req.body.password
+      });
+
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
           newUser.password = hash;
-          newUser.save()
-            .then(dbUser => response.json(dbUser))
-            .catch(dbError => console.log(dbError));
+          newUser
+            .save()
+            .then(user => {
+              const payload = { id: user.id, name: user.email };
+
+              // jsonwebtoken.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+              jsonwebtoken.sign(payload, process.env.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+                res.json({
+                  success: true,
+                  token: "Bearer " + token
+                });
+              });
+            })
+            .catch(err => console.log(err));
         });
       });
     }
   });
 });
+
+
 
 // POST /api/users/login
 router.post('/login', (request, response) => {
@@ -76,7 +95,8 @@ router.post('/login', (request, response) => {
         const payload = { id: user.id, name: user.email, visitedChats: user.visitedChats };
         jsonwebtoken.sign(
           payload,
-          keys.secretOrKey,
+          // keys.secretOrKey,
+          process.env.secretOrKey,
           { expiresIn: 3600 },
           (_, token) => {
             response.json({

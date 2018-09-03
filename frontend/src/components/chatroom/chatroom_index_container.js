@@ -5,7 +5,6 @@ import ChatIndex from './chatroom_index';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    // subredditName:  state.entities.subreddits[ownProps.match.params.subreddit],
     visitedChats: state.session.visitedChats
   }
 };

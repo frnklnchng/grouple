@@ -1,13 +1,15 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import io from "socket.io-client";
 import ChatIndexContainer from './chatroom_index_container';
+import GreetingContainer from '../greeting/greeting_container';
 
 class Chatroom extends React.Component {
   constructor(props){
     super(props);
     this.socket = io.connect();
     // this.createSortedMsgs();
+    // this.socket = io.connect('http://localhost:3000');
+
     this.state = {
       subredditId: this.props.match.params.id,
       message: "",
@@ -21,7 +23,6 @@ class Chatroom extends React.Component {
   }
   
   componentDidMount() {
-    const that = this;
     this.props.fetchAllMessages();
     this.setState({msgs: this.props.msgs})
     // debugger
@@ -47,17 +48,19 @@ class Chatroom extends React.Component {
         msgs: sorted,
       })
     }
+    if((this.props.vistedChats === undefined)){
+      this.props.patchChats({id: this.props.userId, visitedChats: []});
+    }
+    if(!(this.props.vistedChats === undefined)){
+      if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
+        let updatedVisted = Array.from(this.props.visitedChats);
+        updatedVisted.push(nextProps.subredditId);
+  
+        this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
+      }
 
-    if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
-      let updatedVisted = Array.from(this.props.visitedChats);
-      updatedVisted.push(nextProps.subredditId);
-
-      this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
     }
   }
-
-  
-  
 
   update(field) {
     return e => this.setState({
@@ -65,7 +68,7 @@ class Chatroom extends React.Component {
     });
   }
 
-  handleSend(e){
+  handleSend(e) {
     e.preventDefault();
     //send to db
     this.props.postMessage({text: this.state.message, userId: this.props.currentUser, subredditId: this.props.subredditId, date: Date()})
@@ -75,19 +78,13 @@ class Chatroom extends React.Component {
     //set current user name to be the message
     
     this.socket.emit('chat message', {text: this.state.message, userId: this.props.currentUser});
-    // this.socket.emit('chat message', {message: this.state.message, username: this.props.currentUser});
-    this.setState({
-      message: ""
-    });
+    this.setState({ message: '' });
     return false;
   }
   
-  chatOnEmit(){
-    this.scrollToBottom() 
-
-    //set onto local state
+  chatOnEmit() {
+    this.scrollToBottom(); 
     const that = this;
-    //check if new message is from same user, if not append label
     this.socket.on('chat message', (msg) => {
       let msgs = Object.assign({}, that.state.msgs)
       if(!msgs[that.props.subredditId]){
@@ -102,7 +99,6 @@ class Chatroom extends React.Component {
       this.scrollToBottom() 
 
     });
-    
   }
 
   renderPrevMsgs() {
@@ -138,37 +134,36 @@ class Chatroom extends React.Component {
     return result;
   }
 
-  scrollToBottom(){
+  scrollToBottom() {
     let scrollDiv = document.getElementById("chatroom");
-    if(scrollDiv){
-      scrollDiv.scrollTop = scrollDiv.scrollHeight; 
-    }
+    if (scrollDiv) scrollDiv.scrollTop = scrollDiv.scrollHeight;
   }
-
   
   render() {
-    // debugger
     return (
       <div key='component'>
         <div className ='chat-index'>
           <ChatIndexContainer />
         </div>
-        <div className="chat-component">
+      <div className="chat-component">
+        <div className="greeting-header">
           <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
-          <div className='chatroom' id='chatroom'>
-            <ul id="messages">
-            { this.renderPrevMsgs() }
-            </ul>
-          </div>
+          {/* <GreetingContainer />  */}
+        </div>
+      <div className='chatroom' id='chatroom'>
+          <ul id="messages">{ this.renderPrevMsgs() }</ul>
+      </div>
+
           <form id='chat-form' onSubmit={this.handleSend}>
             <div className="chat-input-div">
             <input className='chat-input' id="m" placeholder={`Message ${"r/" + this.props.subredditId}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
               <button className="chat-submit">Send</button>
             </div>
           </form>
-        </div>
+
       </div>
-    )
+      </div>
+    );
   }
 }
 

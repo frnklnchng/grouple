@@ -10,7 +10,8 @@ class SessionForm extends React.Component {
       password: '',
       email: '',
       first_name: '',
-      last_name: ''
+      last_name: '',
+      password2: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -26,6 +27,7 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
+     
     this.props.processForm(user);
   }
 
@@ -60,35 +62,22 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    // const extendedForm = () => {
-    //   return (
-    //     <div className="login-form-container">
-    //       <br />
-    //       <input className="login-firstname"
-    //         type="text"
-    //         placeholder="First Name"
-    //         value={this.state.first_name}
-    //         onChange={this.update('first_name')}
-    //       />
-    //       <input className="login-lastname"
-    //         type="text"
-    //         placeholder="Last Name"
-    //         value={this.state.last_name}
-    //         onChange={this.update('last_name')}
-    //       />
-    //       <input className="login-email"
-    //         type="text"
-    //         placeholder="Email"
-    //         value={this.state.email}
-    //         onChange={this.update('email')}
-    //       />
-    //     </div>
-    //   );
-    // };
+    const extendedForm = () => {
+      return (
+        <div>
+          <input className="login-password"
+              type="password"
+              placeholder="Confirm Password"
+              value={this.state.password2}
+              onChange={this.update('password2')}
+            />
+        </div>
+      );
+    };
 
     // let formtype = this.props.formType === "signup" ? "Sign up" : "Log in";
     let bttntype = this.props.formType === "signup" ? "Sign Up" : "Log In";
-
+     
     return (
       <div className="login-form-container" ref={node => this.node = node}>
         <form onSubmit={this.handleSubmit}>
@@ -96,22 +85,23 @@ class SessionForm extends React.Component {
           <div className="login-form-greeting-2">We're so excited to have you!</div>
           {/* {" " + formtype + " now!"} */}
           <div className="login-form">
-            {/* {this.props.formType === "signup" ? extendedForm() : <br />} */}
             <input className="login-email"
               type="text"
               placeholder="Email"
               value={this.state.email}
               onChange={this.update('email')}
-            />
+              />
             <input className="login-password"
               type="password"
               placeholder="Password"
               value={this.state.password}
               onChange={this.update('password')}
-            />
+              />
+            {this.props.formType === "signup" ? extendedForm() : <br />}
             {this.renderErrors()}
             <button className="submit-bttn" onClick={this.handleSubmit}>{bttntype}</button>
             <div className="session-form-ending-tag">{this.props.navLink}</div>
+            <div className="session-form-ending-tag">Sync your reddit account <br/> Coming Soon!</div>
           </div>
         </form>
       </div>
