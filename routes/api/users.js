@@ -81,8 +81,7 @@ router.post('/login', (request, response) => {
           (_, token) => {
             response.json({
               success: true,
-              token: `Bearer ${token}`,
-              visitedChats: user.visitedChats,
+              token: `Bearer ${token}`
             });
           });
       } else {
@@ -96,7 +95,6 @@ router.post('/login', (request, response) => {
 router.patch('/update_chats', (request, response) => {
   console.log(request.body);
   const visitedChats = request.body.visitedChats;
-  const email = request.body.email;
   const id = request.body.id;
 
   User.update(
@@ -104,6 +102,9 @@ router.patch('/update_chats', (request, response) => {
     { $set: { visitedChats: visitedChats }}
     ).exec();
 
+  response.json({
+    visitedChats: visitedChats,
+  })
 
   
 });

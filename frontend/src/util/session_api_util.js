@@ -66,6 +66,21 @@ export const login = userData => dispatch => {
     );
 };
 
+export const update = userData => dispatch => {
+  axios
+    .patch('/api/users/update_chats', userData)
+    .then(res => {
+      dispatch(updateVistedChats(res))
+    })
+    .catch(err => 
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+  
+}
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   return {
@@ -83,3 +98,11 @@ export const logout = () => dispatch => {
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
+// Update visited chats
+export const updateVisitedChats = (visitedChats) => {
+  return {
+    type: SET_CURRENT_VISITED_CHATS,
+    payload: visitedChats
+  }
+
+}
