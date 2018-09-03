@@ -18,7 +18,6 @@ class Chatroom extends React.Component {
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
 
-    debugger
   }
   
   componentDidMount() {
@@ -47,6 +46,11 @@ class Chatroom extends React.Component {
       this.setState({
         msgs: sorted,
       })
+    }
+    if(!this.props.visitedChats.includes(nextProps.subredditId)){
+      let updatedVisted = Array.from(this.props.visitedChats);
+      updatedVisted.push(nextProps.subredditId);
+      this.props.patchChats(updatedVisted);
     }
   }
 

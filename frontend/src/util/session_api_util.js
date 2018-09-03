@@ -67,13 +67,13 @@ export const login = userData => dispatch => {
     );
 };
 
-export const patchChats = userData => dispatch => {
+export const patchChats = visitedChats => dispatch => {
   return (
     axios
-      .patch('/api/users/update_chats', userData)
+      .patch('/api/users/update_chats', visitedChats)
       .then(res => {
-        debugger
-        dispatch(updateVisitedChats(userData))
+        // debugger
+        dispatch(updateVisitedChats(visitedChats))
       })
       .catch(err => 
         dispatch({
