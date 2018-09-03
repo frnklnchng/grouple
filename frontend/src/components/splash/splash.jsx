@@ -12,6 +12,15 @@ class Splash extends React.Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
+  }
+
+  handleDemo() {
+     
+    const user = Object.assign(
+      {},
+      {email: "email@email.com", password: "password" });
+    this.props.login(user);
   }
 
   componentDidMount() {
@@ -64,8 +73,13 @@ class Splash extends React.Component {
           <p className="splash-quote-header">Chat with fellow Redditors! 😄</p>
           <p>Explore the Grouple community.</p>
           <p>Joining is as easy as creating a Reddit account.</p>
+          <div className="splashbuttons">
 
           <button className="splash-quote-signup" onClick={this.openModal('login')}>Log In</button>
+
+          <button className="splash-quote-demo" onClick={() => this.handleDemo()}>Demo Log In</button>
+          </div>
+        
         </div>
       </div>
     );
