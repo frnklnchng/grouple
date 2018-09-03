@@ -160,12 +160,12 @@ class Chatroom extends React.Component {
             { this.renderPrevMsgs() }
             </ul>
           </div>
-            <form id='chat-form' onSubmit={this.handleSend}>
-              <div className="chat-input-div">
-              <input className='chat-input' id="m" placeholder={`Message ${"r/" + this.props.subredditId}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
-                <button className="chat-submit">Send</button>
-              </div>
-            </form>
+          <form id='chat-form' onSubmit={this.handleSend}>
+            <div className="chat-input-div">
+            <input className='chat-input' id="m" placeholder={`Message ${"r/" + this.props.subredditId}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+              <button className="chat-submit">Send</button>
+            </div>
+          </form>
         </div>
       </div>
     )

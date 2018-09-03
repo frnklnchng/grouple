@@ -83,3 +83,24 @@
 .chat-index {
   position: absolute;
 }
+
+#chat-form {
+  position: absolute;
+  bottom: 25px;
+  width: 65%;
+}
+
+.chatrooms {
+  position: relative;
+  left: 20px;
+}
+.chat-category{
+  padding: 10px;
+}
+.chatrooms-header{
+  padding: 5px;
+}
+.chat-link:hover{
+  background: #ccc;
+  width: 100%;
+}
