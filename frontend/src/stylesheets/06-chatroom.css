@@ -104,3 +104,9 @@
   background: #ccc;
   width: 100%;
 }
+.hidden{
+  display: none;
+}
+.chat-link:hover + .hidden{
+  display: block;
+}
