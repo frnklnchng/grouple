@@ -9,7 +9,16 @@ class ChatIndex extends React.Component {
   constructor(props) {
     super(props);
     // debugger
+    this.removeChat = this.removeChat.bind(this);
   } 
+  removeChat(index){
+    //remove index item from list and run patch\
+    console.log(this.props.visitedChats[index]);
+    let nextChats = Array.from(this.props.visitedChats);
+    nextChats.splice(index, 1);
+    console.log(nextChats);
+    this.props.updateChats({id: this.props.id, visitedChats: nextChats})
+  }
 
   render() {
     const renderVisited = () => { 
@@ -17,9 +26,9 @@ class ChatIndex extends React.Component {
         return <li>No Visited</li>
       }
       return this.props.visitedChats.map((chat, index) => (
-        <li className='chat-link' key={`chatroom-${index}`}>
+        <li className='chat-link' key={`${index}`}>
           <Link className='a-link' to={`/chat/${chat}`}>{`/r/${chat}`}</Link> 
-          <label onClick='' className='hidden clickable remove'>x</label>
+          <label onClick={() => this.removeChat(index)} className='hidden clickable remove'>x</label>
         </li>
         ) 
       )

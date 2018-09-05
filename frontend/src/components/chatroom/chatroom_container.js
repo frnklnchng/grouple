@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchAllMessages: () => dispatch(fetchAllMessages()),
     postMessage: (message) => dispatch(postMessage(message)),
-    patchChats: (visitedChats) => dispatch(patchChats(visitedChats)),
+    patchChats: (userData) => dispatch(patchChats(userData)),
   }
 };
 

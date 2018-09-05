@@ -102,6 +102,7 @@ router.post('/login', (request, response) => {
             response.json({
               success: true,
               token: `Bearer ${token}`,
+              visited: payload.visitedChats
             });
           });
       } else {
