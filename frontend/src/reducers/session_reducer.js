@@ -11,7 +11,9 @@ const _nullUser = Object.freeze({
 });
 
 const sessionReducer = (state = _nullUser, action) => {
+  let nextState = {};
   Object.freeze(state);
+
   switch(action.type) {
      
     case SET_CURRENT_USER:
@@ -19,8 +21,11 @@ const sessionReducer = (state = _nullUser, action) => {
               email: action.payload.name,
               visitedChats: action.payload.visitedChats };
     case SET_CURRENT_VISITED_CHATS:
-    // debugger
-      return Object.assign({}, state, action.payload);
+      nextState = Object.assign({}, state, action.payload);
+      nextState.visitedChats = action.payload.visitedChats;
+      // debugger
+      return nextState;
+
     default:
       return state; 
   }

@@ -48,7 +48,7 @@ export const signup = (userData, history) => dispatch => {
 
 // Login - Get User Token
 export const login = userData => dispatch => {
-   
+
   axios
     .post('/api/users/login', userData)
     .then(res => {
@@ -62,6 +62,7 @@ export const login = userData => dispatch => {
       const decoded = jwt_decode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
+      // dispatch(updateVisitedChats());
     })
     .catch(err =>
       dispatch({
@@ -72,12 +73,10 @@ export const login = userData => dispatch => {
 };
 
 export const patchChats = userData => dispatch => {
-  // debugger
   return (
     axios
       .patch('/api/users/update_chats', userData)
       .then(res => {
-        // debugger
         dispatch(updateVisitedChats(res.data))
       })
       .catch(err => 
@@ -91,6 +90,7 @@ export const patchChats = userData => dispatch => {
 
 // Set logged in user
 export const setCurrentUser = decoded => {
+  // debugger
   return {
     type: SET_CURRENT_USER,
     payload: decoded
@@ -108,7 +108,6 @@ export const logout = () => dispatch => {
 };
 // Update visited chats
 export const updateVisitedChats = (payload) => {
-  // debugger
   return {
     type: SET_CURRENT_VISITED_CHATS,
     payload

@@ -125,10 +125,14 @@ router.patch('/update_chats', (request, response) => {
 
   response.json({
     visitedChats,
-  })
-
-  
+  })  
 });
+
+router.get('/visited_chat', (request, response) => {
+  const user = request.body.email;
+  User.findOne({})
+
+})
 
 
 module.exports = router;
