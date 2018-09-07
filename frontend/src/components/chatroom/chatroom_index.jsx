@@ -11,6 +11,11 @@ class ChatIndex extends React.Component {
     // debugger
     this.removeChat = this.removeChat.bind(this);
   } 
+
+  componentDidMount(){
+    this.props.receiveChats(this.props.id);
+  }
+  
   removeChat(index){
     //remove index item from list and run patch\
     console.log(this.props.visitedChats[index]);
@@ -18,8 +23,9 @@ class ChatIndex extends React.Component {
     nextChats.splice(index, 1);
     console.log(nextChats);
     this.props.updateChats({id: this.props.id, visitedChats: nextChats})
+    this.props.receiveChats(this.props.id);
   }
-
+  
   render() {
     const renderVisited = () => { 
       if(!this.props.visitedChats){

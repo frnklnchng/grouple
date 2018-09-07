@@ -14,7 +14,7 @@ function userParams(formUser) {
   return {
     email: formUser.body.email,
     password: formUser.body.password,
-    vistedChats: formUser.body.visitedChats,
+    // vistedChats: formUser.body.visitedChats,
   };
 }
 
@@ -28,7 +28,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (reques
   response.json({ 
     id: request.user.id,
     email: request.user.email,
-    vistedChats: request.user.vistedChats,
+    // vistedChats: request.user.vistedChats,
   });
 });
 

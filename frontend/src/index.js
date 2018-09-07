@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const decoded = jwt_decode(localStorage.jwtToken);
     // Set user and isAuthenticated
     store.dispatch(APIUtil.setCurrentUser(decoded));
-    debugger
     // store.dispatch(APIUtil.fetchChats())
     
     // Check for expired token
