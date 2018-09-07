@@ -129,9 +129,8 @@ router.patch('/update_chats', (request, response) => {
 });
 
 router.get('/visited_chat', (request, response) => {
-  // const userEmail = request.body.email;
   const id = request.query.id;
-  // console.log(request.body)
+
   console.log(request.query)
   User.findById(id).then(user => {
     if (!user) {

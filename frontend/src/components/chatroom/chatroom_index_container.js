@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ChatIndex from './chatroom_index';
-import { patchChats } from '../../util/session_api_util';
+import { patchChats, fetchChats } from '../../util/session_api_util';
 //import respective chatroom api utils
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    receiveChats: (userId) => dispatch(fetchChats(userId)),
     updateChats: (userData) => dispatch(patchChats(userData))
   }
 };

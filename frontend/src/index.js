@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set user and isAuthenticated
     store.dispatch(APIUtil.setCurrentUser(decoded));
     debugger
+    // store.dispatch(APIUtil.fetchChats())
+    
     // Check for expired token
     const currentTime = Date.now() / 1000;
     if (decoded.exp < currentTime) {
