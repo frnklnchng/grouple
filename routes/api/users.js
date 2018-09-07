@@ -129,9 +129,20 @@ router.patch('/update_chats', (request, response) => {
 });
 
 router.get('/visited_chat', (request, response) => {
-  const user = request.body.email;
-  User.findOne({})
-
+  // const userEmail = request.body.email;
+  const id = request.query.id;
+  // console.log(request.body)
+  console.log(request.query)
+  User.findById(id).then(user => {
+    if (!user) {
+      const errorMessage = { email: 'This user does not exist' };
+      return response.status(404).json(errorMessage);
+    }
+    response.json({
+      id: user.id,
+      visitedChats: user.visitedChats
+    })
+  })
 })
 
 

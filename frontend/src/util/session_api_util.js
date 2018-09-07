@@ -88,6 +88,22 @@ export const patchChats = userData => dispatch => {
   )
 }
 
+// export const fetchChats = userId => dispatch => {
+//   return (
+//     axios
+//       .get(`/api/users/visited_chat?id=${userId}`, userData)
+//       .then(res => {
+//         dispatch(updateVisitedChats(res.data))
+//       })
+//       .catch(err => 
+//         dispatch({
+//           type: GET_ERRORS,
+//           payload: err.response.data
+//         })
+//       )
+//   )
+// }
+
 // Set logged in user
 export const setCurrentUser = decoded => {
   // debugger
@@ -106,6 +122,7 @@ export const logout = () => dispatch => {
   // Set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
+
 // Update visited chats
 export const updateVisitedChats = (payload) => {
   return {
