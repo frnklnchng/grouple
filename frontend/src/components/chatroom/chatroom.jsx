@@ -40,8 +40,11 @@ class Chatroom extends React.Component {
     return sortedMsgs;
   }
 
-  subscribe(){
+  subscribe(subredditId){
+    debugger
+    console.log(this.state.subredditId)
     if(!this.props.visitedChats.includes(this.state.subredditId) && this.state.subredditId != null){
+      console.log('subbed')
       let updatedVisted = Array.from(this.props.visitedChats);
       updatedVisted.push(this.state.subredditId);
 
@@ -50,6 +53,7 @@ class Chatroom extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
+    console.log('updated')
     if(!Object.values(this.state.msgs).length){
       let sorted = this.createSortedMsgs(nextProps.msgs);
       this.setState({
@@ -109,7 +113,7 @@ class Chatroom extends React.Component {
     // return Object.values(this.props.msgs).map(msg => (<li className='msg'>{msg.text}</li>))
     // let messages = Object.values(this.props.msgs);
     if(!Object.values(this.state.msgs).length || !this.props.subredditId){
-      return (<div> no msgs </div>)
+      return (<div> No messages in this chat! </div>)
     }
     let subredditId = this.props.subredditId;
     if(!this.state.msgs[subredditId]){
@@ -152,7 +156,7 @@ class Chatroom extends React.Component {
       <div className="chat-component">
         <div className="greeting-header">
           <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
-          <button onClick={this.subscribe} >Subscribe</button>
+          <button onClick={() => this.subscribe(this.state.subredditId)} >Subscribe</button>
           <GreetingContainer /> 
         </div>
       <div className='chatroom' id='chatroom'>
