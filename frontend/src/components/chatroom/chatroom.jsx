@@ -19,6 +19,7 @@ class Chatroom extends React.Component {
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
+    this.subscribe = this.subscribe.bind(this);
 
   }
   
@@ -39,7 +40,14 @@ class Chatroom extends React.Component {
     return sortedMsgs;
   }
 
+  subscribe(){
+    if(!this.props.visitedChats.includes(this.state.subredditId) && this.state.subredditId != null){
+      let updatedVisted = Array.from(this.props.visitedChats);
+      updatedVisted.push(this.state.subredditId);
 
+      this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
+    }
+  }
   
   componentWillReceiveProps(nextProps) {
     if(!Object.values(this.state.msgs).length){
@@ -49,12 +57,12 @@ class Chatroom extends React.Component {
       })
     }
 
-      if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
-        let updatedVisted = Array.from(this.props.visitedChats);
-        updatedVisted.push(nextProps.subredditId);
+      // if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
+      //   let updatedVisted = Array.from(this.props.visitedChats);
+      //   updatedVisted.push(nextProps.subredditId);
   
-        this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
-      }
+      //   this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
+      // }
 
   }
 
@@ -144,6 +152,7 @@ class Chatroom extends React.Component {
       <div className="chat-component">
         <div className="greeting-header">
           <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
+          <button onClick={this.subscribe} >Subscribe</button>
           <GreetingContainer /> 
         </div>
       <div className='chatroom' id='chatroom'>
