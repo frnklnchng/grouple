@@ -19,7 +19,7 @@ class Chatroom extends React.Component {
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
-    this.subscribe = this.subscribe.bind(this);
+    // this.subscribe = this.subscribe.bind(this);
 
   }
   
@@ -41,7 +41,7 @@ class Chatroom extends React.Component {
   }
 
   subscribe(subredditId){
-    debugger
+    // debugger
     console.log(this.state.subredditId)
     if(!this.props.visitedChats.includes(this.state.subredditId) && this.state.subredditId != null){
       console.log('subbed')
@@ -54,12 +54,16 @@ class Chatroom extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     console.log('updated')
+    // debugger
     if(!Object.values(this.state.msgs).length){
       let sorted = this.createSortedMsgs(nextProps.msgs);
       this.setState({
         msgs: sorted,
       })
     }
+    this.setState({
+      subredditId: nextProps.subredditId,
+    })
 
       // if(!this.props.visitedChats.includes(nextProps.subredditId) && nextProps.subredditId != null){
       //   let updatedVisted = Array.from(this.props.visitedChats);
@@ -148,6 +152,7 @@ class Chatroom extends React.Component {
   }
   
   render() {
+    // debugger
     return (
       <div key='component'>
         <div className ='chat-index'>
