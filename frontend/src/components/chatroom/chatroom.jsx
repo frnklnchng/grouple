@@ -65,7 +65,7 @@ class Chatroom extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     // debugger 
-    if(!(this.state.msgs.length === 0)){
+    if(!Object.values(this.state.msgs).length){
       let sorted = this.createSortedMsgs(nextProps.msgs);
       this.setState({
         msgs: sorted,
