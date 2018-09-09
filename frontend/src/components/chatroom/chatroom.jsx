@@ -42,18 +42,18 @@ class Chatroom extends React.Component {
 
   subscribe(subredditId){
     // debugger
-    console.log(this.state.subredditId)
     if(!this.props.visitedChats.includes(this.state.subredditId) && this.state.subredditId != null){
-      console.log('subbed')
       let updatedVisted = Array.from(this.props.visitedChats);
       updatedVisted.push(this.state.subredditId);
 
       this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
+    } else if(this.props.includes(this.state.subredditId && this.state.subredditId != null)) {
+
+        //remove from array
     }
   }
   
   componentWillReceiveProps(nextProps) {
-    console.log('updated')
     // debugger
     if(!Object.values(this.state.msgs).length){
       let sorted = this.createSortedMsgs(nextProps.msgs);
