@@ -41,20 +41,29 @@ class Chatroom extends React.Component {
   }
 
   subscribe(subredditId){
-    // debugger
+    debugger
     if(!this.props.visitedChats.includes(this.state.subredditId) && this.state.subredditId != null){
+      console.log('first')
       let updatedVisted = Array.from(this.props.visitedChats);
       updatedVisted.push(this.state.subredditId);
 
       this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
-    } else if(this.props.includes(this.state.subredditId && this.state.subredditId != null)) {
+    } 
+    else if(this.props.visitedChats.includes(this.state.subredditId)) {
+        let updatedVisted = Array.from(this.props.visitedChats);
+        const that = this;
+        const removeIndx = updatedVisted.findIndex((el) => el === that.state.subredditId);
+        updatedVisted.splice(removeIndx, 1);
 
+        this.props.patchChats({id: this.props.currentUserId, visitedChats: updatedVisted});
+        console.log('removed?')
         //remove from array
     }
+    console.log('end log')
   }
   
   componentWillReceiveProps(nextProps) {
-    // debugger
+    // debugger 
     if(!Object.values(this.state.msgs).length){
       let sorted = this.createSortedMsgs(nextProps.msgs);
       this.setState({
@@ -151,6 +160,10 @@ class Chatroom extends React.Component {
     if (scrollDiv) scrollDiv.scrollTop = scrollDiv.scrollHeight;
   }
   
+  renderSubscribeButton(){
+
+  }
+
   render() {
     // debugger
     return (
@@ -161,7 +174,7 @@ class Chatroom extends React.Component {
       <div className="chat-component">
         <div className="greeting-header">
           <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
-          <button onClick={() => this.subscribe(this.state.subredditId)} >Subscribe</button>
+          <button className={`subscribe-button`} onClick={() => this.subscribe(this.state.subredditId)} >Subscribe</button>
           <GreetingContainer /> 
         </div>
       <div className='chatroom' id='chatroom'>
@@ -170,7 +183,8 @@ class Chatroom extends React.Component {
 
           <form id='chat-form' onSubmit={this.handleSend}>
             <div className="chat-input-div">
-            <input className='chat-input' id="m" placeholder={`Message ${"r/" + this.props.subredditId}`} autoComplete="off" onChange={this.update('message')} value={this.state.message} />
+            <input className='chat-input' id="m" placeholder={`Message ${"r/" + this.props.subredditId}`} 
+            autoComplete="off" onChange={this.update('message')} value={this.state.message} />
               <button className="chat-submit">Send</button>
             </div>
           </form>
