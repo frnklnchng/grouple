@@ -19,6 +19,7 @@ class Chatroom extends React.Component {
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
+    this.renderSubscribeButton = this.renderSubscribeButton.bind(this);
     // this.subscribe = this.subscribe.bind(this);
 
   }
@@ -41,7 +42,7 @@ class Chatroom extends React.Component {
   }
 
   subscribe(subredditId){
-    debugger
+    // debugger
     if(!this.props.visitedChats.includes(this.state.subredditId) && this.state.subredditId != null){
       console.log('first')
       let updatedVisted = Array.from(this.props.visitedChats);
@@ -161,7 +162,11 @@ class Chatroom extends React.Component {
   }
   
   renderSubscribeButton(){
-
+    if(this.props.visitedChats){
+      if(this.props.visitedChats.includes(this.state.subredditId)) {
+        return (<button className='unsubscribe-button' onClick={() => this.subscribe(this.state.subredditId)}>Unsubscribe</button>)
+      } else return (<button className='subscribe-button' onClick={() => this.subscribe(this.state.subredditId)} >Subscribe</button>)
+    }
   }
 
   render() {
@@ -174,7 +179,7 @@ class Chatroom extends React.Component {
       <div className="chat-component">
         <div className="greeting-header">
           <h1 className="chat-name">{"r/" + this.props.subredditId}</h1>
-          <button className={`subscribe-button`} onClick={() => this.subscribe(this.state.subredditId)} >Subscribe</button>
+          {this.renderSubscribeButton()}
           <GreetingContainer /> 
         </div>
       <div className='chatroom' id='chatroom'>

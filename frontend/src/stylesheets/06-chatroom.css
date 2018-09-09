@@ -157,3 +157,13 @@
   color: #c0c0c0;
   transition: 0.6s ease;
 }
+
+.subscribe-button:hover {
+  background-color: #90EE90;
+}
+.unsubscribe-button:hover {
+  background-color: red;
+}
+.unsubscribe-button, .subscribe-button {
+  height: 40px
+}
