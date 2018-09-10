@@ -15,7 +15,7 @@ class Chatroom extends React.Component {
       message: "",
       msgs: Array.from(this.props.msgs),
     };
-    // debugger
+    // 
     this.handleSend = this.handleSend.bind(this);
     this.chatOnEmit = this.chatOnEmit.bind(this);
     this.chatOnEmit();
@@ -23,11 +23,21 @@ class Chatroom extends React.Component {
     // this.subscribe = this.subscribe.bind(this);
 
   }
+
+  componentDidUpdate(){
+    // console.log('updated')
+  }
   
   componentDidMount() {
     this.props.fetchAllMessages();
-    this.setState({msgs: this.props.msgs})
-    // debugger
+    // 
+    if (!this.state.msgs.length) {
+      let sorted = this.createSortedMsgs(this.props.msgs);
+      this.setState({
+        msgs: sorted,
+      })
+     
+    }
   }
 
   createSortedMsgs(nextPropsMsgs){
@@ -60,13 +70,15 @@ class Chatroom extends React.Component {
         console.log('removed?')
         //remove from array
     }
-    console.log('end log')
   }
   
   componentWillReceiveProps(nextProps) {
-    // debugger 
-    if(!Object.values(this.state.msgs).length){
+    // console.log('update')
+    // if(!(this.state.msgs.length) == 0){
+    if(!(nextProps.msgs.length) == 0){
       let sorted = this.createSortedMsgs(nextProps.msgs);
+      // debugger
+      sorted = Object.assign({}, sorted, this.state.msgs)
       this.setState({
         msgs: sorted,
       })
@@ -170,7 +182,6 @@ class Chatroom extends React.Component {
   }
 
   render() {
-    // debugger
     return (
       <div key='component'>
         <div className ='chat-index'>
