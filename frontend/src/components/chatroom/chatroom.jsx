@@ -24,9 +24,6 @@ class Chatroom extends React.Component {
 
   }
 
-  componentDidUpdate(){
-    // console.log('updated')
-  }
   
   componentDidMount() {
     this.props.fetchAllMessages();
@@ -52,7 +49,6 @@ class Chatroom extends React.Component {
   }
 
   subscribe(subredditId){
-    // debugger
     if(!this.props.visitedChats.includes(this.state.subredditId) && this.state.subredditId != null){
       console.log('first')
       let updatedVisted = Array.from(this.props.visitedChats);
@@ -73,11 +69,11 @@ class Chatroom extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    // console.log('update')
+
     // if(!(this.state.msgs.length) == 0){
     if(!(nextProps.msgs.length) == 0){
       let sorted = this.createSortedMsgs(nextProps.msgs);
-      // debugger
+      // 
       sorted = Object.assign({}, sorted, this.state.msgs)
       this.setState({
         msgs: sorted,
