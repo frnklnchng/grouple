@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const jsonwebtoken = require('jsonwebtoken');
 
-const keys = require('../../config/keys');
+// const keys = require('../../config/keys');
 const User = require('../../models/User');
 const validateLoginInput = require('../../validation/login');
 const validateSignupInput = require('../../validation/signup');
@@ -59,8 +59,13 @@ router.post("/signup", (req, res) => {
             .then(user => {
               const payload = { id: user.id, name: user.email };
 
+<<<<<<< HEAD
               jsonwebtoken.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
               // jsonwebtoken.sign(payload, process.env.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+=======
+              // jsonwebtoken.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+              jsonwebtoken.sign(payload, process.env.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+>>>>>>> 08d91bc393a1afb5b3b7ed9ff0c6baa8d09eee01
                 res.json({
                   success: true,
                   token: "Bearer " + token
@@ -95,8 +100,13 @@ router.post('/login', (request, response) => {
         const payload = { id: user.id, name: user.email, visitedChats: user.visitedChats };
         jsonwebtoken.sign(
           payload,
+<<<<<<< HEAD
           keys.secretOrKey,
           // process.env.secretOrKey,
+=======
+          // keys.secretOrKey,
+          process.env.secretOrKey,
+>>>>>>> 08d91bc393a1afb5b3b7ed9ff0c6baa8d09eee01
           { expiresIn: 3600 },
           (_, token) => {
             response.json({

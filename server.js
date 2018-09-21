@@ -7,8 +7,8 @@ const passportSetup =  require('./config/passport');
 
 const users = require('./routes/api/users');
 const messages = require('./routes/api/messages');
-// const database = process.env.mongoURI;
-const database = require('./config/keys').mongoURI;
+const database = process.env.mongoURI;
+// const database = require('./config/keys').mongoURI;
 passportSetup(passport);
 
 mongoose
